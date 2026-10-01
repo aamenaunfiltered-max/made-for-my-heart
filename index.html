@@ -88,7 +88,196 @@ button{
   color:var(--rose-dark);
 }
 
-/* HERO */
+/* =========================
+   PASSWORD SCREEN
+========================= */
+
+#passwordGate{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,255,255,.75),transparent 25%),
+    radial-gradient(circle at 85% 75%,rgba(255,255,255,.65),transparent 25%),
+    linear-gradient(135deg,var(--pink),var(--lav) 55%,var(--blue));
+  transition:opacity .5s ease,visibility .5s ease;
+}
+
+#passwordGate.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.password-shell{
+  width:min(650px,92vw);
+  position:relative;
+}
+
+.password-card{
+  background:rgba(255,254,253,.94);
+  border:3px solid var(--ink);
+  border-radius:30px;
+  box-shadow:10px 10px 0 var(--ink);
+  padding:clamp(35px,7vw,70px);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.password-card:before{
+  content:"";
+  position:absolute;
+  inset:16px;
+  border:2px dashed rgba(201,103,135,.28);
+  border-radius:20px;
+  pointer-events:none;
+}
+
+.password-content{
+  position:relative;
+  z-index:2;
+}
+
+.password-icon{
+  width:90px;
+  height:90px;
+  margin:0 auto 18px;
+  display:grid;
+  place-items:center;
+  border:3px solid var(--ink);
+  border-radius:50%;
+  background:var(--pink2);
+  box-shadow:5px 5px 0 var(--ink);
+  font-size:3.2rem;
+  animation:passwordFloat 3s ease-in-out infinite;
+}
+
+.password-card h1{
+  font-size:clamp(3.5rem,8vw,6.5rem);
+  line-height:.85;
+  margin:18px 0;
+}
+
+.password-card h1 span{
+  color:var(--rose-dark);
+}
+
+.password-note{
+  font-size:1.15rem;
+  line-height:1.5;
+  max-width:520px;
+  margin:0 auto 25px;
+}
+
+.password-form{
+  display:flex;
+  gap:10px;
+  max-width:430px;
+  margin:0 auto;
+}
+
+.password-input{
+  flex:1;
+  min-width:0;
+  border:3px solid var(--ink);
+  background:#fff;
+  border-radius:12px;
+  padding:14px 15px;
+  font:700 1rem 'Nunito',sans-serif;
+  color:var(--ink);
+  outline:none;
+  box-shadow:4px 4px 0 var(--ink);
+}
+
+.password-input:focus{
+  outline:3px solid var(--rose);
+  outline-offset:2px;
+}
+
+.password-submit{
+  border:3px solid var(--ink);
+  background:var(--yellow);
+  color:var(--ink);
+  border-radius:12px;
+  padding:13px 18px;
+  font-weight:900;
+  box-shadow:4px 4px 0 var(--ink);
+  white-space:nowrap;
+}
+
+.password-submit:hover{
+  transform:translateY(-2px);
+}
+
+.password-submit:active{
+  transform:translate(3px,3px);
+  box-shadow:1px 1px 0 var(--ink);
+}
+
+.password-error{
+  min-height:24px;
+  margin:18px 0 0;
+  color:var(--rose-dark);
+  font-weight:800;
+}
+
+.password-hint{
+  font-family:'Space Mono',monospace;
+  font-size:.68rem;
+  opacity:.55;
+  margin-top:14px;
+}
+
+.password-spark{
+  position:absolute;
+  color:var(--rose-dark);
+  font-size:2rem;
+  animation:sparkFloat 3s ease-in-out infinite;
+}
+
+.password-spark.s1{
+  top:5%;
+  left:4%;
+}
+
+.password-spark.s2{
+  right:4%;
+  top:18%;
+  animation-delay:.8s;
+}
+
+.password-spark.s3{
+  bottom:5%;
+  left:8%;
+  animation-delay:1.4s;
+}
+
+@keyframes passwordFloat{
+  0%,100%{
+    transform:translateY(0) rotate(-8deg);
+  }
+  50%{
+    transform:translateY(-9px) rotate(8deg);
+  }
+}
+
+@keyframes sparkFloat{
+  0%,100%{
+    transform:translateY(0) rotate(0);
+  }
+  50%{
+    transform:translateY(-10px) rotate(12deg);
+  }
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
   min-height:100vh;
@@ -160,7 +349,7 @@ button{
   font-size:clamp(3rem,7vw,6.4rem);
   line-height:.9;
   margin:20px 0 12px;
-  font-weight:900;
+  font-weight:700;
 }
 
 .terminal-main span{
@@ -196,8 +385,12 @@ button{
 }
 
 @keyframes heartPop{
-  50%{transform:scale(1.16)}
-  100%{transform:scale(1)}
+  50%{
+    transform:scale(1.16);
+  }
+  100%{
+    transform:scale(1);
+  }
 }
 
 .heart-status{
@@ -254,7 +447,7 @@ button{
   color:#fff;
   padding:14px 22px;
   box-shadow:4px 4px 0 var(--rose);
-  font-weight:800;
+  font-weight:700;
   border-radius:10px;
   transition:.15s;
 }
@@ -272,7 +465,6 @@ button{
   font-size:clamp(3.5rem,8vw,7.2rem);
   line-height:.85;
   margin:0 0 25px;
-  font-weight:900;
 }
 
 .hero-copy h2 span{
@@ -286,14 +478,12 @@ button{
   margin:0 auto 30px;
 }
 
-/* BOYFRIEND'S DAY */
+/* =========================
+   OPENING
+========================= */
 
 .opening{
-  background:linear-gradient(
-    180deg,
-    var(--blue),
-    #e7e0f4
-  );
+  background:linear-gradient(180deg,var(--blue),#e7e0f4);
   text-align:center;
 }
 
@@ -345,7 +535,6 @@ button{
   font-size:clamp(3.8rem,9vw,8rem);
   line-height:.82;
   margin:25px 0 20px;
-  font-weight:900;
 }
 
 .opening-card h1 span{
@@ -366,7 +555,9 @@ button{
   color:var(--rose);
 }
 
-/* LOVE NOTE */
+/* =========================
+   NOTE
+========================= */
 
 .paper-section{
   background:var(--yellow);
@@ -400,7 +591,6 @@ button{
   font-size:clamp(3rem,6vw,5rem);
   line-height:.9;
   margin:0 0 35px;
-  font-weight:900;
 }
 
 .paper h2 span{
@@ -422,14 +612,12 @@ button{
   font-size:1.8rem;
 }
 
-/* SPIN THE WHEEL */
+/* =========================
+   WHEEL
+========================= */
 
 .game{
-  background:linear-gradient(
-    135deg,
-    var(--lav),
-    var(--pink)
-  );
+  background:linear-gradient(135deg,var(--lav),var(--pink));
 }
 
 .game-card{
@@ -437,14 +625,10 @@ button{
   border:3px solid var(--ink);
   border-radius:24px;
   box-shadow:var(--shadow);
-  padding:clamp(28px,5vw,48px);
+  padding:45px;
   max-width:900px;
   margin:auto;
   text-align:center;
-}
-
-.game-card .section-title{
-  margin-bottom:10px;
 }
 
 .wheel-wrap{
@@ -470,7 +654,7 @@ button{
   );
   box-shadow:6px 6px 0 var(--ink);
   transition:transform 2.7s cubic-bezier(.15,.8,.2,1);
-  overflow:visible;
+  overflow:hidden;
 }
 
 .wheel:after{
@@ -499,56 +683,33 @@ button{
   position:absolute;
   left:50%;
   top:50%;
-  width:125px;
-  margin:0;
+  width:90px;
   text-align:center;
-  font-size:.8rem;
-  font-weight:900;
+  font-family:'Space Mono',monospace;
+  font-size:.72rem;
+  font-weight:700;
   line-height:1.05;
-  letter-spacing:-.01em;
-  transform-origin:center center;
-  z-index:4;
-  pointer-events:none;
+  transform-origin:0 0;
 }
 
 .wl1{
-  transform:
-    translate(-50%,-50%)
-    rotate(0deg)
-    translateY(-112px)
-    rotate(0deg);
+  transform:rotate(-2deg) translate(92px,-18px);
 }
 
 .wl2{
-  transform:
-    translate(-50%,-50%)
-    rotate(72deg)
-    translateY(-112px)
-    rotate(-72deg);
+  transform:rotate(58deg) translate(90px,-18px);
 }
 
 .wl3{
-  transform:
-    translate(-50%,-50%)
-    rotate(144deg)
-    translateY(-112px)
-    rotate(-144deg);
+  transform:rotate(118deg) translate(90px,-18px);
 }
 
 .wl4{
-  transform:
-    translate(-50%,-50%)
-    rotate(216deg)
-    translateY(-112px)
-    rotate(-216deg);
+  transform:rotate(178deg) translate(90px,-18px);
 }
 
 .wl5{
-  transform:
-    translate(-50%,-50%)
-    rotate(288deg)
-    translateY(-112px)
-    rotate(-288deg);
+  transform:rotate(238deg) translate(90px,-18px);
 }
 
 .pointer{
@@ -560,9 +721,8 @@ button{
 
 .result{
   font-size:1.35rem;
-  min-height:2.4em;
-  font-weight:800;
-  color:var(--rose-dark);
+  min-height:2em;
+  font-weight:600;
   margin:22px 0 0;
 }
 
@@ -575,18 +735,18 @@ button{
     transform:scale(.3);
     opacity:0;
   }
-
   65%{
     transform:scale(1.12);
     opacity:1;
   }
-
   100%{
     transform:scale(1);
   }
 }
 
-/* PHOTOS */
+/* =========================
+   ARCHIVE
+========================= */
 
 .archive{
   background:var(--green);
@@ -596,7 +756,6 @@ button{
   font-size:clamp(3rem,7vw,6rem);
   line-height:.85;
   margin:0 0 15px;
-  font-weight:900;
 }
 
 .subtitle{
@@ -640,7 +799,9 @@ button{
   text-align:center;
 }
 
-/* LEGEND */
+/* =========================
+   LEGEND
+========================= */
 
 .legend{
   background:var(--blue);
@@ -710,7 +871,9 @@ button{
   background:var(--rose);
 }
 
-/* LOVE METER */
+/* =========================
+   LOVE METER
+========================= */
 
 .meter{
   background:var(--lav);
@@ -729,7 +892,7 @@ button{
 
 .percent{
   font-size:clamp(4rem,12vw,9rem);
-  font-weight:900;
+  font-weight:700;
   line-height:1;
   margin:15px;
 }
@@ -745,11 +908,7 @@ button{
 .meter-fill{
   height:100%;
   width:0;
-  background:linear-gradient(
-    90deg,
-    var(--pink2),
-    var(--rose)
-  );
+  background:linear-gradient(90deg,var(--pink2),var(--rose));
   transition:1s;
 }
 
@@ -781,274 +940,253 @@ button{
 
 .choice{
   border:2px solid var(--ink);
-  background:var(--yellow);
-  padding:12px 18px;
-  box-shadow:4px 4px 0 var(--ink);
-  border-radius:9px;
+  background:#fff;
+  border-radius:999px;
+  padding:10px 17px;
   font-weight:800;
+  box-shadow:3px 3px 0 var(--ink);
 }
 
 .choice:hover{
   transform:translateY(-2px);
+  background:var(--pink);
 }
 
-.choice:active{
-  transform:translate(3px,3px);
-  box-shadow:1px 1px 0 var(--ink);
-}
-
-/* FINAL */
+/* =========================
+   FINAL
+========================= */
 
 .final{
   min-height:100vh;
+  padding:100px 0;
   display:flex;
   align-items:center;
-  text-align:center;
-  background:linear-gradient(
-    135deg,
-    var(--pink),
-    var(--yellow),
-    var(--blue)
-  );
-  padding:80px 20px;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
 }
 
 .final h2{
-  font-size:clamp(3.5rem,9vw,8rem);
-  line-height:.82;
+  font-size:clamp(3rem,8vw,7rem);
+  line-height:.9;
   margin:20px 0;
-  font-weight:900;
 }
 
 .final h2 span{
-  display:block;
   color:var(--rose-dark);
 }
 
 .final p{
-  font-size:1.25rem;
-  max-width:800px;
-  margin:0 auto 28px;
+  max-width:720px;
+  margin:0 auto 30px;
+  font-size:1.3rem;
+  line-height:1.5;
 }
 
 .browser-link{
   display:inline-block;
-  background:#fff;
+  padding:10px 16px;
   border:2px solid var(--ink);
-  border-radius:10px;
-  box-shadow:5px 5px 0 var(--ink);
-  padding:12px 20px;
+  border-radius:999px;
+  background:var(--cream);
   font-family:'Space Mono',monospace;
-  margin-bottom:35px;
+  box-shadow:3px 3px 0 var(--ink);
 }
 
 .footer{
-  font-size:1.7rem;
+  margin-top:35px;
+  font-size:1.6rem;
 }
 
-/* ANIMATION */
+/* =========================
+   REVEALS + CONFETTI
+========================= */
 
 .reveal{
   opacity:0;
-  transform:translateY(30px);
+  transform:translateY(25px);
   transition:.7s ease;
 }
 
 .reveal.show{
   opacity:1;
-  transform:none;
+  transform:translateY(0);
 }
 
 .confetti{
   position:fixed;
-  top:-20px;
-  font-size:20px;
+  top:-30px;
+  z-index:99999;
   pointer-events:none;
-  z-index:100;
-  animation:fall 3s linear forwards;
+  animation:fall 3.5s linear forwards;
 }
 
 @keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(720deg);
+  0%{
+    transform:translateY(0) rotate(0);
+    opacity:1;
+  }
+  100%{
+    transform:translateY(110vh) rotate(600deg);
     opacity:0;
   }
 }
 
-/* PRIZE POPUP */
+/* =========================
+   PRIZE MODAL
+========================= */
 
 .prize-modal{
   position:fixed;
   inset:0;
-  background:rgba(45,38,48,.38);
-  display:grid;
-  place-items:center;
-  padding:24px;
-  z-index:100;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(45,38,48,.45);
   opacity:0;
-  pointer-events:none;
+  visibility:hidden;
   transition:.25s;
 }
 
 .prize-modal.show{
   opacity:1;
-  pointer-events:auto;
+  visibility:visible;
 }
 
 .prize-box{
-  width:min(560px,92vw);
+  width:min(520px,100%);
   background:var(--paper);
-  border:4px solid var(--ink);
-  border-radius:28px;
-  box-shadow:10px 10px 0 rgba(45,38,48,.9);
-  padding:42px 30px;
+  border:3px solid var(--ink);
+  border-radius:25px;
+  box-shadow:9px 9px 0 var(--ink);
+  padding:40px 30px;
   text-align:center;
-  transform:scale(.78) rotate(-2deg);
-  transition:.35s cubic-bezier(.2,1.4,.4,1);
+  transform:scale(.85);
+  transition:.3s cubic-bezier(.2,1.3,.4,1);
 }
 
 .prize-modal.show .prize-box{
-  transform:scale(1) rotate(0);
+  transform:scale(1);
 }
 
-.prize-box .gift{
-  font-size:3.5rem;
-  margin-bottom:8px;
+.gift{
+  font-size:4rem;
+  margin-bottom:10px;
 }
 
 .prize-box h3{
-  font-size:clamp(1.8rem,5vw,3rem);
-  margin:8px 0 12px;
-  font-weight:900;
+  font-size:clamp(2rem,6vw,3.5rem);
+  line-height:1;
+  margin:15px 0;
+  color:var(--rose-dark);
 }
 
 .prize-box p{
-  font-size:1.05rem;
-  margin:0 0 22px;
+  font-size:1.2rem;
+  line-height:1.4;
 }
 
-.close-prize{
-  background:var(--pink);
-  color:var(--ink);
-}
-
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:850px){
 
-  .hero-grid,
-  .legend-grid{
+  .hero-grid{
     grid-template-columns:1fr;
+  }
+
+  .hero-copy{
+    text-align:center;
   }
 
   .photos{
     grid-template-columns:1fr 1fr;
   }
 
-  .term-cards{
+  .legend-grid{
     grid-template-columns:1fr;
-  }
-
-  .hero{
-    text-align:center;
-  }
-
-  .browser{
-    max-width:650px;
-    margin:auto;
-  }
-
-  .legend-copy{
-    order:2;
   }
 
   .portrait{
     max-width:500px;
     margin:auto;
   }
-
-  .photo-card img{
-    height:330px;
-  }
 }
 
-@media(max-width:700px){
-
-  .wheel-label{
-    width:105px;
-    font-size:.65rem;
-  }
-
-  .wl1{
-    transform:translate(-50%,-50%) rotate(0deg) translateY(-104px);
-  }
-
-  .wl2{
-    transform:translate(-50%,-50%) rotate(72deg) translateY(-104px) rotate(-72deg);
-  }
-
-  .wl3{
-    transform:translate(-50%,-50%) rotate(144deg) translateY(-104px) rotate(-144deg);
-  }
-
-  .wl4{
-    transform:translate(-50%,-50%) rotate(216deg) translateY(-104px) rotate(-216deg);
-  }
-
-  .wl5{
-    transform:translate(-50%,-50%) rotate(288deg) translateY(-104px) rotate(-288deg);
-  }
-}
-
-@media(max-width:520px){
+@media(max-width:560px){
 
   .wrap{
-    padding:0 15px;
+    padding:0 16px;
   }
 
   .section{
-    padding:65px 0;
+    padding:70px 0;
   }
 
-  .browser-body{
-    padding:25px 18px;
+  .password-form{
+    flex-direction:column;
   }
 
-  .game-card,
-  .meter-card{
-    padding:28px 18px;
+  .password-submit{
+    width:100%;
   }
 
-  .paper{
-    padding:25px 18px;
+  .password-card{
+    padding:32px 20px;
+  }
+
+  .password-card h1{
+    font-size:3.3rem;
+  }
+
+  .term-cards{
+    grid-template-columns:1fr;
+  }
+
+  .game-card{
+    padding:30px 18px;
+  }
+
+  .wheel-label{
+    font-size:.57rem;
+    width:75px;
+  }
+
+  .wl1{
+    transform:rotate(-2deg) translate(76px,-15px);
+  }
+
+  .wl2{
+    transform:rotate(58deg) translate(74px,-15px);
+  }
+
+  .wl3{
+    transform:rotate(118deg) translate(74px,-15px);
+  }
+
+  .wl4{
+    transform:rotate(178deg) translate(74px,-15px);
+  }
+
+  .wl5{
+    transform:rotate(238deg) translate(74px,-15px);
   }
 
   .photos{
     grid-template-columns:1fr;
   }
 
-  .photo-card img{
-    height:420px;
-  }
-
   .stats{
     grid-template-columns:1fr;
   }
 
-  .portrait img{
-    height:500px;
+  .meter-card{
+    padding:35px 20px;
   }
 
-  .opening-card{
-    border-radius:20px;
-  }
-
-  .opening-card h1{
-    font-size:4rem;
-  }
-
-  .hero-copy h2{
-    font-size:4rem;
+  .password-spark{
+    display:none;
   }
 }
 </style>
@@ -1056,7 +1194,80 @@ button{
 
 <body>
 
-<!-- HERO -->
+<!-- =========================
+     PASSWORD SCREEN
+========================= -->
+
+<div id="passwordGate" aria-label="Private website password screen">
+
+  <div class="password-shell">
+
+    <span class="password-spark s1">✦</span>
+    <span class="password-spark s2">♡</span>
+    <span class="password-spark s3">✦</span>
+
+    <div class="password-card">
+
+      <div class="password-content">
+
+        <div class="password-icon">♡</div>
+
+        <div class="kicker">
+          A LITTLE SECRET
+        </div>
+
+        <h1>
+          Made just<br>
+          <span>for you.</span>
+        </h1>
+
+        <p class="password-note">
+          This little corner of the internet is only for my favourite person.
+          Enter our secret password to open it. ♡
+        </p>
+
+        <form class="password-form" id="passwordForm">
+
+          <input
+            class="password-input"
+            id="passwordInput"
+            type="password"
+            placeholder="Our little secret..."
+            autocomplete="off"
+            aria-label="Secret password"
+          >
+
+          <button
+            class="password-submit"
+            type="submit"
+          >
+            Unlock ♡
+          </button>
+
+        </form>
+
+        <div
+          class="password-error"
+          id="passwordError"
+          aria-live="polite"
+        ></div>
+
+        <div class="password-hint">
+          private little world.exe
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
@@ -1106,40 +1317,28 @@ button{
       <div class="term-cards">
 
         <div class="term-card">
-          <div class="term-head">
-            error.txt
-          </div>
-
+          <div class="term-head">error.txt</div>
           <p>
             ERROR 404: ordinary girlfriend not found
           </p>
         </div>
 
         <div class="term-card">
-          <div class="term-head">
-            warning
-          </div>
-
+          <div class="term-head">warning</div>
           <p>
             Dangerously cute. Proceed anyway?
           </p>
         </div>
 
         <div class="term-card">
-          <div class="term-head">
-            update.exe
-          </div>
-
+          <div class="term-head">update.exe</div>
           <p>
             Installing 1,000,000 hugs... 99%
           </p>
         </div>
 
         <div class="term-card">
-          <div class="term-head">
-            new message
-          </div>
-
+          <div class="term-head">new message</div>
           <p>
             ♥ you → permanently installed in my heart
           </p>
@@ -1156,6 +1355,7 @@ button{
       </button>
 
     </div>
+
   </div>
 
 
@@ -1171,8 +1371,8 @@ button{
     </h2>
 
     <p>
-      A card felt too small, so I made you a whole little
-      corner of the internet. Take your time. ♡
+      A card felt too small, so I made you a whole little corner
+      of the internet. Take your time. ♡
     </p>
 
     <button
@@ -1186,10 +1386,13 @@ button{
   </div>
 
 </div>
+
 </section>
 
 
-<!-- BOYFRIEND'S DAY -->
+<!-- =========================
+     OPENING
+========================= -->
 
 <section id="start" class="opening section">
 
@@ -1212,18 +1415,21 @@ button{
     </div>
 
     <p class="little-line">
-      Thank you for being you. You make the ordinary feel
-      like something worth remembering and somehow,
-      you make my favourite memories out of the simplest moments.
+      Thank you for being you. You make the ordinary feel like
+      something worth remembering and somehow, you make my
+      favourite memories out of the simplest moments.
     </p>
 
   </div>
 
 </div>
+
 </section>
 
 
-<!-- SPIN THE WHEEL -->
+<!-- =========================
+     GAME
+========================= -->
 
 <section class="game section">
 
@@ -1241,8 +1447,8 @@ button{
     </h2>
 
     <p>
-      Every spin is a real coupon.
-      Screenshot what you win. It is legally binding in this house.
+      Every spin is a real coupon. Screenshot what you win,
+      it is legally binding in this house.
     </p>
 
     <div class="wheel-wrap">
@@ -1278,8 +1484,8 @@ button{
 
         <span class="wheel-label wl5">
           MC CHICKEN<br>
-          WITH CHICKEN NUGGETS<br>
-          ON ME
+          WITH CHICKEN<br>
+          NUGGETS ON ME
         </span>
 
       </div>
@@ -1305,10 +1511,13 @@ button{
   </div>
 
 </div>
+
 </section>
 
 
-<!-- LOVE NOTE -->
+<!-- =========================
+     LOVE NOTE
+========================= -->
 
 <section class="paper-section section">
 
@@ -1336,22 +1545,21 @@ button{
         and somehow the one person who can make me smile even
         when I don't feel like smiling. I love our silly conversations,
         the random laughs, the teasing, the tiny (not so tiny) fights,
-        and all the ordinary moments that somehow become my
-        favourite memories just because they're with you.
+        and all the ordinary moments that somehow become my favourite
+        memories just because they're with you.
       </p>
 
       <p>
-        You have become such a beautiful part of my life,
-        and I hope you know how deeply loved you are.
-        I may not always say it perfectly, but my heart chooses
-        you in all the little ways, every single day.
+        You have become such a beautiful part of my life, and I hope
+        you know how deeply loved you are. I may not always say it
+        perfectly, but my heart chooses you in all the little ways,
+        every single day.
       </p>
 
       <p>
-        Happy Boyfriend's Day, my love.
-        Here's to all the memories we've made,
-        all the ones we're making right now,
-        and all the ones still waiting for us.
+        Happy Boyfriend's Day, my love. Here's to all the memories
+        we've made, all the ones we're making right now, and all the
+        ones still waiting for us.
       </p>
 
       <p class="signature">
@@ -1363,10 +1571,13 @@ button{
   </div>
 
 </div>
+
 </section>
 
 
-<!-- PHOTO ARCHIVE -->
+<!-- =========================
+     PHOTO ARCHIVE
+========================= -->
 
 <section class="archive section">
 
@@ -1396,16 +1607,13 @@ button{
       class="photo-card reveal"
       style="--rot:-2deg"
     >
-
       <img
         src="images/first-photo.jpg"
         alt="A photo of us together"
       >
-
       <figcaption class="photo-label">
         First photo together ♡
       </figcaption>
-
     </figure>
 
 
@@ -1413,16 +1621,13 @@ button{
       class="photo-card reveal"
       style="--rot:2deg"
     >
-
       <img
         src="images/favourite-memory.jpg"
         alt="A favourite memory"
       >
-
       <figcaption class="photo-label">
         Favourite memory
       </figcaption>
-
     </figure>
 
 
@@ -1430,16 +1635,13 @@ button{
       class="photo-card reveal"
       style="--rot:-1deg"
     >
-
       <img
         src="images/you-being-you.png"
         alt="A sweet candid moment"
       >
-
       <figcaption class="photo-label">
         You being you
       </figcaption>
-
     </figure>
 
 
@@ -1447,25 +1649,25 @@ button{
       class="photo-card reveal"
       style="--rot:2deg"
     >
-
       <img
         src="images/us.jpg"
         alt="Us together"
       >
-
       <figcaption class="photo-label">
         Us ♡
       </figcaption>
-
     </figure>
 
   </div>
 
 </div>
+
 </section>
 
 
-<!-- LEGEND -->
+<!-- =========================
+     LEGEND
+========================= -->
 
 <section class="legend section">
 
@@ -1498,6 +1700,7 @@ button{
         999 HP
       </span>
     </h3>
+
 
     <div class="stats">
 
@@ -1538,6 +1741,7 @@ button{
 
     </div>
 
+
     <p>
       <strong>
         BOYFRIEND · LEGENDARY
@@ -1555,10 +1759,13 @@ button{
   </div>
 
 </div>
+
 </section>
 
 
-<!-- LOVE METER -->
+<!-- =========================
+     LOVE METER
+========================= -->
 
 <section id="meter" class="meter section">
 
@@ -1575,6 +1782,7 @@ button{
       love you?
     </h2>
 
+
     <div
       class="percent"
       id="percent"
@@ -1582,14 +1790,14 @@ button{
       0%
     </div>
 
-    <div class="meter-track">
 
+    <div class="meter-track">
       <div
         class="meter-fill"
         id="fill"
       ></div>
-
     </div>
+
 
     <div
       class="love-text"
@@ -1598,6 +1806,7 @@ button{
     >
       Choose a level. I'm ready.
     </div>
+
 
     <div class="choices">
 
@@ -1635,9 +1844,11 @@ button{
 
     </div>
 
+
     <p>
       Tap a button. I promise the scale is completely normal.
     </p>
+
 
     <button
       type="button"
@@ -1650,10 +1861,13 @@ button{
   </div>
 
 </div>
+
 </section>
 
 
-<!-- FINAL -->
+<!-- =========================
+     FINAL
+========================= -->
 
 <section id="final" class="final">
 
@@ -1668,16 +1882,16 @@ button{
   </div>
 
   <h2>
-    I’ve watched you grow<br>
+    I've watched you grow<br>
     <span>
       into the man of my dreams.
     </span>
   </h2>
 
   <p>
-    And somewhere along the way, loving you became one
-    of my favourite parts of being me. In every version
-    of my life, I think my heart would still find its way to you.
+    And somewhere along the way, loving you became one of my
+    favourite parts of being me. In every version of my life,
+    I think my heart would still find its way to you.
   </p>
 
   <div class="footer">
@@ -1695,10 +1909,13 @@ button{
   </button>
 
 </div>
+
 </section>
 
 
-<!-- PRIZE POPUP -->
+<!-- =========================
+     PRIZE POPUP
+========================= -->
 
 <div
   class="prize-modal"
@@ -1741,56 +1958,159 @@ button{
 
 <script>
 
-/* SPIN THE WHEEL */
+/* =========================
+   PASSWORD
+========================= */
+
+/*
+  CHANGE YOUR PASSWORD HERE.
+  Current password: onlyus
+*/
+
+const SECRET_PASSWORD = 'onlyus';
+
+const passwordGate =
+  document.getElementById('passwordGate');
+
+const passwordForm =
+  document.getElementById('passwordForm');
+
+const passwordInput =
+  document.getElementById('passwordInput');
+
+const passwordError =
+  document.getElementById('passwordError');
+
+
+function unlockSite(){
+
+  passwordGate.classList.add('hidden');
+
+  sessionStorage.setItem(
+    'boyfriendDayUnlocked',
+    'yes'
+  );
+
+  setTimeout(() => {
+    passwordGate.remove();
+  },500);
+
+}
+
+
+/* If already unlocked during this browser session */
+
+if(
+  sessionStorage.getItem('boyfriendDayUnlocked')
+  === 'yes'
+){
+
+  passwordGate.classList.add('hidden');
+
+  setTimeout(() => {
+    passwordGate.remove();
+  },500);
+
+}
+
+
+/* Check password */
+
+passwordForm.addEventListener(
+  'submit',
+  (e) => {
+
+    e.preventDefault();
+
+    if(
+      passwordInput.value === SECRET_PASSWORD
+    ){
+
+      passwordError.textContent =
+        'Unlocked. Welcome to our little world. ♡';
+
+      unlockSite();
+
+    }else{
+
+      passwordError.textContent =
+        'Nope... that is not our secret. Try again, baby. ♡';
+
+      passwordInput.value = '';
+
+      passwordInput.focus();
+
+      passwordInput.animate(
+        [
+          {transform:'translateX(0)'},
+          {transform:'translateX(-7px)'},
+          {transform:'translateX(7px)'},
+          {transform:'translateX(0)'}
+        ],
+        {
+          duration:260
+        }
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   PRIZE WHEEL
+========================= */
 
 const prizes = [
 
   {
-    wheel:"YOU PICK THE MOVIE 🎬",
-    popup:"You pick the movie tonight. Your choice. No arguments. 🎬♡"
+    wheel:'YOU PICK THE MOVIE 🎬',
+    popup:'You pick the movie tonight. Your choice. No arguments. 🎬♡'
   },
 
   {
-    wheel:"HARLEY DAVIDSON",
-    popup:"HARLEY DAVIDSON. Because apparently this is your love language. 🏍️♡"
+    wheel:'HARLEY DAVIDSON',
+    popup:'HARLEY DAVIDSON. Because apparently this is your love language. 🏍️♡'
   },
 
   {
-    wheel:"NO JOKES ON FUMBLE",
-    popup:"NO JOKES ON FUMBLE. This one is officially protected territory. 😌♡"
+    wheel:'NO JOKES ON FUMBLE',
+    popup:'NO JOKES ON FUMBLE. This one is officially protected territory. 😌♡'
   },
 
   {
-    wheel:"KISSIIII",
-    popup:"KISSIIII. Come here. Immediately. 💋♡"
+    wheel:'KISSIIII',
+    popup:'KISSIIII. Come here. Immediately. 💋♡'
   },
 
   {
-    wheel:"MC CHICKEN WITH CHICKEN NUGGETS ON ME",
-    popup:"MC CHICKEN with Chicken Nuggets ON ME. 🍗♡"
+    wheel:'MC CHICKEN WITH CHICKEN NUGGETS ON ME',
+    popup:'MC CHICKEN with Chicken Nuggets ON ME. 🍗♡'
   }
 
 ];
 
+
 let spinning = false;
 
 const wheel =
-  document.getElementById("wheel");
+  document.getElementById('wheel');
 
 const prize =
-  document.getElementById("prize");
+  document.getElementById('prize');
 
 const spinButton =
-  document.getElementById("spin");
+  document.getElementById('spin');
 
 const prizeModal =
-  document.getElementById("prizeModal");
+  document.getElementById('prizeModal');
 
 const prizeTitle =
-  document.getElementById("prizeTitle");
+  document.getElementById('prizeTitle');
 
 const prizeCopy =
-  document.getElementById("prizeCopy");
+  document.getElementById('prizeCopy');
 
 
 function openPrize(index){
@@ -1801,259 +2121,323 @@ function openPrize(index){
   prizeCopy.textContent =
     prizes[index].popup;
 
-  prizeModal.classList.add("show");
+  prizeModal.classList.add('show');
 
   confetti();
 
 }
 
 
-spinButton.addEventListener("click",()=>{
+spinButton.addEventListener(
+  'click',
+  () => {
 
-  if(spinning){
-    return;
-  }
+    if(spinning) return;
 
-  spinning = true;
+    spinning = true;
 
-  spinButton.disabled = true;
-
-  spinButton.textContent =
-    "SPINNING...";
-
-  prize.classList.remove("pop");
-
-  void prize.offsetWidth;
-
-  const index =
-    Math.floor(
-      Math.random() * prizes.length
-    );
-
-  const centerAngle =
-    index * 72;
-
-  const turns =
-    1440 + (360 - centerAngle);
-
-  wheel.style.transform =
-    `rotate(${turns}deg)`;
-
-  setTimeout(()=>{
-
-    prize.textContent =
-      "🎁 " + prizes[index].wheel;
-
-    prize.classList.add("pop");
-
-    openPrize(index);
-
-    spinButton.disabled = false;
+    spinButton.disabled = true;
 
     spinButton.textContent =
-      "SPIN AGAIN ♡";
+      'SPINNING...';
 
-    spinning = false;
+    prize.classList.remove('pop');
 
-  },2700);
+    void prize.offsetWidth;
 
-});
+    const index =
+      Math.floor(
+        Math.random() * prizes.length
+      );
+
+    const centerAngle =
+      index * 72;
+
+    const turns =
+      1440 + (360 - centerAngle);
+
+    wheel.style.transform =
+      `rotate(${turns}deg)`;
 
 
-/* CLOSE PRIZE */
+    setTimeout(
+      () => {
+
+        prize.textContent =
+          '🎁 ' +
+          prizes[index].wheel;
+
+        prize.classList.add('pop');
+
+        openPrize(index);
+
+        spinButton.disabled = false;
+
+        spinButton.textContent =
+          'SPIN AGAIN ♡';
+
+        spinning = false;
+
+      },
+      2700
+    );
+
+  }
+);
+
+
+/* Close popup */
 
 document
-  .getElementById("closePrize")
-  .addEventListener("click",()=>{
-    prizeModal.classList.remove("show");
-  });
+  .getElementById('closePrize')
+  .addEventListener(
+    'click',
+    () => {
+      prizeModal.classList.remove('show');
+    }
+  );
 
 
-prizeModal.addEventListener("click",(event)=>{
+prizeModal.addEventListener(
+  'click',
+  e => {
 
-  if(event.target === prizeModal){
-    prizeModal.classList.remove("show");
+    if(e.target === prizeModal){
+
+      prizeModal.classList.remove('show');
+
+    }
+
   }
+);
 
-});
 
+document.addEventListener(
+  'keydown',
+  e => {
 
-document.addEventListener("keydown",(event)=>{
+    if(e.key === 'Escape'){
 
-  if(event.key === "Escape"){
-    prizeModal.classList.remove("show");
+      prizeModal.classList.remove('show');
+
+    }
+
   }
+);
 
-});
 
-
-/* LOVE METER */
+/* =========================
+   LOVE METER
+========================= */
 
 const loveMessages = {
 
   12:
-    "Okay... I love you a little. (That is already a lie.) ♡",
+    'Okay... I love you a little. (That is already a lie.) ♡',
 
   42:
-    "A lot. Like, ridiculously, unfairly, adorably a lot. ♡",
+    'A lot. Like, ridiculously, unfairly, adorably a lot. ♡',
 
   100:
-    "100%. Fully. Completely. No tiny print. Just you. ♡",
+    '100%. Fully. Completely. No tiny print. Just you. ♡',
 
   999:
-    "SYSTEM OVERLOAD: my love for you has no maximum. ∞♡"
+    'SYSTEM OVERLOAD: my love for you has no maximum. ∞♡'
 
 };
 
 
 document
-  .querySelectorAll(".choice")
-  .forEach(button=>{
+  .querySelectorAll('.choice')
+  .forEach(
+    btn => {
 
-    button.addEventListener("click",()=>{
+      btn.addEventListener(
+        'click',
+        () => {
 
-      const value =
-        Number(button.dataset.value);
+          const value =
+            Number(btn.dataset.value);
 
-      document.getElementById("percent")
-        .textContent =
-        value > 100
-          ? "∞%"
-          : value + "%";
-
-      document.getElementById("fill")
-        .style.width =
-        Math.min(value,100) + "%";
-
-      const text =
-        document.getElementById("loveText");
-
-      text.textContent =
-        loveMessages[value];
-
-      text.classList.remove("pop");
-
-      void text.offsetWidth;
-
-      text.classList.add("pop");
-
-    });
-
-  });
+          document.getElementById(
+            'percent'
+          ).textContent =
+            value > 100
+              ? '∞%'
+              : value + '%';
 
 
-/* HEART BUTTON */
-
-const loadHeart =
-  document.getElementById("loadHeart");
-
-
-loadHeart.addEventListener("click",()=>{
-
-  loadHeart.textContent = "♥";
-
-  loadHeart.classList.add("loaded");
-
-  document.getElementById("heartStatus")
-    .textContent =
-    "Surprise loaded. You are very loved. ♡";
-
-  confetti();
-
-  setTimeout(()=>{
-
-    document
-      .getElementById("start")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-  },650);
-
-});
+          document.getElementById(
+            'fill'
+          ).style.width =
+            Math.min(value,100) + '%';
 
 
-/* NAVIGATION */
+          const text =
+            document.getElementById(
+              'loveText'
+            );
 
-document
-  .getElementById("openWebsite")
-  .addEventListener("click",()=>{
+          text.textContent =
+            loveMessages[value];
 
-    document
-      .getElementById("start")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
+          text.classList.remove('pop');
 
-  });
+          void text.offsetWidth;
 
-
-document
-  .getElementById("showMe")
-  .addEventListener("click",()=>{
-
-    document
-      .getElementById("start")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-  });
-
-
-document
-  .getElementById("testMeter")
-  .addEventListener("click",()=>{
-
-    document
-      .getElementById("meter")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-  });
-
-
-document
-  .getElementById("finalThing")
-  .addEventListener("click",()=>{
-
-    document
-      .getElementById("final")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-  });
-
-
-document
-  .getElementById("playAgain")
-  .addEventListener("click",()=>{
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-
-  });
-
-
-/* SCROLL ANIMATIONS */
-
-const observer =
-  new IntersectionObserver(
-    entries=>{
-
-      entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-          entry.target.classList.add("show");
+          text.classList.add('pop');
 
         }
+      );
 
+    }
+  );
+
+
+/* =========================
+   HEART BUTTON
+========================= */
+
+const loadHeart =
+  document.getElementById('loadHeart');
+
+
+loadHeart.addEventListener(
+  'click',
+  () => {
+
+    loadHeart.textContent = '♥';
+
+    loadHeart.classList.add('loaded');
+
+    document.getElementById(
+      'heartStatus'
+    ).textContent =
+      'Surprise loaded. You are very loved. ♡';
+
+    confetti();
+
+    setTimeout(
+      () => {
+
+        document
+          .getElementById('start')
+          .scrollIntoView({
+            behavior:'smooth'
+          });
+
+      },
+      650
+    );
+
+  }
+);
+
+
+/* =========================
+   NAVIGATION BUTTONS
+========================= */
+
+document
+  .getElementById('openWebsite')
+  .addEventListener(
+    'click',
+    () => {
+
+      document
+        .getElementById('start')
+        .scrollIntoView({
+          behavior:'smooth'
+        });
+
+    }
+  );
+
+
+document
+  .getElementById('showMe')
+  .addEventListener(
+    'click',
+    () => {
+
+      document
+        .getElementById('start')
+        .scrollIntoView({
+          behavior:'smooth'
+        });
+
+    }
+  );
+
+
+document
+  .getElementById('testMeter')
+  .addEventListener(
+    'click',
+    () => {
+
+      document
+        .getElementById('meter')
+        .scrollIntoView({
+          behavior:'smooth'
+        });
+
+    }
+  );
+
+
+document
+  .getElementById('finalThing')
+  .addEventListener(
+    'click',
+    () => {
+
+      document
+        .getElementById('final')
+        .scrollIntoView({
+          behavior:'smooth'
+        });
+
+    }
+  );
+
+
+document
+  .getElementById('playAgain')
+  .addEventListener(
+    'click',
+    () => {
+
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
       });
+
+    }
+  );
+
+
+/* =========================
+   SCROLL REVEALS
+========================= */
+
+const io =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(
+        entry => {
+
+          if(entry.isIntersecting){
+
+            entry.target.classList.add(
+              'show'
+            );
+
+          }
+
+        }
+      );
 
     },
     {
@@ -2063,26 +2447,38 @@ const observer =
 
 
 document
-  .querySelectorAll(".reveal")
-  .forEach(element=>{
-    observer.observe(element);
-  });
+  .querySelectorAll('.reveal')
+  .forEach(
+    element => io.observe(element)
+  );
 
 
-/* CONFETTI */
+/* =========================
+   CONFETTI
+========================= */
 
 function confetti(){
 
-  const chars =
-    ["♥","♡","✦","✿","❤"];
+  const chars = [
+    '♥',
+    '♡',
+    '✦',
+    '✿',
+    '❤'
+  ];
 
-  for(let i=0;i<35;i++){
+
+  for(
+    let i=0;
+    i<35;
+    i++
+  ){
 
     const span =
-      document.createElement("span");
+      document.createElement('span');
 
     span.className =
-      "confetti";
+      'confetti';
 
     span.textContent =
       chars[
@@ -2091,19 +2487,24 @@ function confetti(){
         )
       ];
 
+
     span.style.left =
-      Math.random() * 100 + "vw";
+      Math.random() * 100 + 'vw';
+
 
     span.style.animationDelay =
-      Math.random() * .8 + "s";
+      Math.random() * .8 + 's';
+
 
     span.style.fontSize =
-      12 + Math.random() * 22 + "px";
+      12 + Math.random() * 22 + 'px';
+
 
     document.body.appendChild(span);
 
+
     setTimeout(
-      ()=>span.remove(),
+      () => span.remove(),
       3800
     );
 
