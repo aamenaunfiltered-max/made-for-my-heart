@@ -484,9 +484,7 @@ button{
 }
 
 
-/* =========================
-   OUR SONG
-========================= */
+/* OUR SONG */
 
 .memory-extras{
   background:linear-gradient(
@@ -570,25 +568,32 @@ button{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:14px;
+  align-items:start;
 }
 
 .gif-placeholder{
-  width:100%;
+  width:88%;
   aspect-ratio:1;
+  margin:0 auto;
   border:3px solid var(--ink);
-  border-radius:16px;
-  background:
-    radial-gradient(circle at 30% 30%,#fff 0 8%,transparent 9%),
-    linear-gradient(135deg,var(--pink2),var(--lav));
+  border-radius:24px;
+  background:linear-gradient(135deg,var(--pink2),var(--lav));
   display:block;
   object-fit:cover;
+  box-shadow:4px 4px 0 var(--ink);
+  transition:transform .2s ease;
+}
+
+.gif-placeholder:hover{
+  transform:rotate(-2deg) scale(1.03);
 }
 
 .gif-hint{
   text-align:center;
-  font:.72rem 'Space Mono',monospace;
-  margin:9px 0 0;
-  opacity:.7;
+  font:.68rem 'Space Mono',monospace;
+  margin:12px 0 0;
+  opacity:.75;
+  line-height:1.4;
 }
 
 
@@ -1246,6 +1251,11 @@ button{
     gap:10px;
   }
 
+  .gif-placeholder{
+    width:92%;
+    border-radius:20px;
+  }
+
 }
 
 </style>
@@ -1580,12 +1590,14 @@ button{
 
           <div>
 
-            <div class="gif-placeholder">
-              ♡
-            </div>
+            <img
+              class="gif-placeholder"
+              src="images/cute-couple-hug.gif"
+              alt="Cute couple hugging"
+            >
 
             <p class="gif-hint">
-              your cute GIF goes here ♡
+              us in our cozy little world ♡
             </p>
 
           </div>
@@ -1593,12 +1605,14 @@ button{
 
           <div>
 
-            <div class="gif-placeholder">
-              ♥
-            </div>
+            <img
+              class="gif-placeholder"
+              src="images/cute-couple-kiss.gif"
+              alt="Cute couple kissing"
+            >
 
             <p class="gif-hint">
-              another little GIF ♡
+              tiny kisses, obviously ♡
             </p>
 
           </div>
@@ -2154,9 +2168,7 @@ button{
 
 <script>
 
-/* =========================
-   PASSWORD
-========================= */
+/* PASSWORD */
 
 const SECRET_PASSWORD = 'onlyus';
 
@@ -2236,9 +2248,7 @@ passwordForm.addEventListener(
 );
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 function goToSection(id){
 
@@ -2318,9 +2328,7 @@ document
   );
 
 
-/* =========================
-   HEART
-========================= */
+/* HEART */
 
 const loadHeart =
   document.getElementById('loadHeart');
@@ -2350,9 +2358,7 @@ loadHeart.addEventListener(
 );
 
 
-/* =========================
-   OPENING HEARTS
-========================= */
+/* OPENING HEARTS */
 
 const openingCard =
   document.querySelector('.opening-card');
@@ -2448,9 +2454,7 @@ if(openingCard){
 }
 
 
-/* =========================
-   PERFECT WHEEL
-========================= */
+/* PERFECT WHEEL */
 
 const prizes = [
 
@@ -2903,9 +2907,7 @@ document.addEventListener(
 );
 
 
-/* =========================
-   LOVE METER
-========================= */
+/* LOVE METER */
 
 const loveMessages = {
 
@@ -2977,9 +2979,7 @@ document
   );
 
 
-/* =========================
-   SCROLL REVEALS
-========================= */
+/* SCROLL REVEALS */
 
 const revealObserver =
   new IntersectionObserver(
@@ -3016,9 +3016,7 @@ document
   );
 
 
-/* =========================
-   CONFETTI
-========================= */
+/* CONFETTI */
 
 function confetti(){
 
