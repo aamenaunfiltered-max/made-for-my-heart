@@ -25,14 +25,18 @@
   --shadow:6px 6px 0 rgba(45,38,48,.88);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
-  background:var(--pink);
   color:var(--ink);
+  background:var(--pink);
   font-family:'Nunito',sans-serif;
   overflow-x:hidden;
 }
@@ -54,7 +58,7 @@ button{
 }
 
 .wrap{
-  max-width:1120px;
+  width:min(1120px,100%);
   margin:auto;
   padding:0 24px;
 }
@@ -67,7 +71,9 @@ button{
   position:relative;
 }
 
-.center{text-align:center}
+.center{
+  text-align:center;
+}
 
 .kicker{
   font-family:'Space Mono',monospace;
@@ -76,7 +82,9 @@ button{
   font-size:.8rem;
 }
 
-.red{color:var(--rose-dark)}
+.red{
+  color:var(--rose-dark);
+}
 
 .cta{
   border:2px solid var(--ink);
@@ -89,7 +97,9 @@ button{
   transition:.15s;
 }
 
-.cta:hover{transform:translateY(-2px)}
+.cta:hover{
+  transform:translateY(-2px);
+}
 
 .cta:active{
   transform:translate(2px,2px);
@@ -131,7 +141,6 @@ button{
 
 .password-shell{
   width:min(650px,92vw);
-  position:relative;
 }
 
 .password-card{
@@ -141,22 +150,6 @@ button{
   box-shadow:10px 10px 0 var(--ink);
   padding:clamp(35px,7vw,70px);
   text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-
-.password-card:before{
-  content:"";
-  position:absolute;
-  inset:16px;
-  border:2px dashed rgba(201,103,135,.28);
-  border-radius:20px;
-  pointer-events:none;
-}
-
-.password-content{
-  position:relative;
-  z-index:2;
 }
 
 .password-icon{
@@ -179,7 +172,9 @@ button{
   margin:18px 0;
 }
 
-.password-card h1 span{color:var(--rose-dark)}
+.password-card h1 span{
+  color:var(--rose-dark);
+}
 
 .password-note{
   font-size:1.15rem;
@@ -223,7 +218,7 @@ button{
 }
 
 .password-hint{
-  font: .68rem 'Space Mono',monospace;
+  font:.68rem 'Space Mono',monospace;
   opacity:.55;
   margin-top:14px;
 }
@@ -293,7 +288,9 @@ button{
   font-weight:700;
 }
 
-.terminal-main span{color:var(--rose-dark)}
+.terminal-main span{
+  color:var(--rose-dark);
+}
 
 .tiny{
   font-size:.9rem;
@@ -463,19 +460,22 @@ button{
   animation-delay:var(--delay);
 }
 
-@keyframes oozing{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
+@keyframes oozeUp{
+  0%{
+    transform:translate3d(0,0,0) scale(.6);
+    opacity:0;
+  }
+  15%{
+    opacity:.7;
+  }
+  100%{
+    transform:translate3d(var(--drift),-430px,0) scale(1.2);
+    opacity:0;
+  }
 }
 
-@keyframes oozingUp{
-  0%{transform:translate3d(0,0,0) scale(.6);opacity:0}
-  15%{opacity:.7}
-  100%{transform:translate3d(var(--drift),-430px,0) scale(1.2);opacity:0}
-}
 
-
-/* NOTE */
+/* LOVE NOTE */
 
 .paper-section{
   background:var(--yellow);
@@ -511,7 +511,9 @@ button{
   margin:0 0 35px;
 }
 
-.paper h2 span{color:var(--rose-dark)}
+.paper h2 span{
+  color:var(--rose-dark);
+}
 
 .note{
   font-size:1.45rem;
@@ -519,10 +521,12 @@ button{
   max-width:900px;
 }
 
-.note p{margin:0 0 20px}
+.note p{
+  margin:0 0 20px;
+}
 
 
-/* WHEEL */
+/* GAME */
 
 .game{
   background:linear-gradient(135deg,var(--lav),var(--pink));
@@ -539,23 +543,41 @@ button{
   text-align:center;
 }
 
+
+/* FIXED WHEEL */
+
 .wheel-wrap{
   position:relative;
-  width:min(370px,78vw);
-  margin:25px auto 30px;
+  width:min(430px,82vw);
+  margin:30px auto 35px;
+  padding-top:18px;
+}
+
+.pointer{
+  position:absolute;
+  z-index:20;
+  top:-3px;
+  left:50%;
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+  border-left:17px solid transparent;
+  border-right:17px solid transparent;
+  border-top:34px solid var(--rose-dark);
+  filter:drop-shadow(3px 3px 0 var(--ink));
 }
 
 .wheel{
   width:100%;
   aspect-ratio:1;
+  position:relative;
   border:7px solid var(--ink);
   border-radius:50%;
-  display:block;
-  position:relative;
   background:var(--cream);
-  box-shadow:6px 6px 0 var(--ink);
+  box-shadow:7px 7px 0 var(--ink);
   overflow:hidden;
-  transition:transform 2.7s cubic-bezier(.15,.8,.2,1);
+  transform:rotate(0deg);
+  transition:transform 3s cubic-bezier(.12,.78,.18,1);
 }
 
 .wheel-svg{
@@ -575,7 +597,7 @@ button{
 .s4{fill:var(--green)}
 .s5{fill:var(--yellow)}
 
-.wheel-svg text{
+.wheel-text{
   font-family:'Space Mono',monospace;
   font-weight:700;
   fill:var(--ink);
@@ -589,34 +611,27 @@ button{
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
-  width:104px;
-  height:104px;
+  width:105px;
+  height:105px;
   border-radius:50%;
   background:var(--cream);
   border:3px solid var(--ink);
   display:grid;
   place-items:center;
   text-align:center;
-  font-size:.86rem;
-  font-weight:900;
-  line-height:1.05;
-  z-index:5;
-  pointer-events:none;
-}
-
-.pointer{
-  font-size:2rem;
-  line-height:1;
-  transform:translateY(6px);
-  color:var(--rose-dark);
-  position:relative;
+  font-family:'Space Mono',monospace;
+  font-size:.76rem;
+  font-weight:700;
+  line-height:1.08;
   z-index:10;
+  pointer-events:none;
+  box-shadow:3px 3px 0 rgba(45,38,48,.2);
 }
 
 .result{
   font-size:1.35rem;
   min-height:2em;
-  font-weight:600;
+  font-weight:700;
   margin:22px 0 0;
 }
 
@@ -625,15 +640,25 @@ button{
 }
 
 @keyframes prizePop{
-  0%{transform:scale(.3);opacity:0}
-  65%{transform:scale(1.12);opacity:1}
-  100%{transform:scale(1)}
+  0%{
+    transform:scale(.3);
+    opacity:0;
+  }
+  65%{
+    transform:scale(1.12);
+    opacity:1;
+  }
+  100%{
+    transform:scale(1);
+  }
 }
 
 
-/* ARCHIVE */
+/* PHOTOS */
 
-.archive{background:var(--green)}
+.archive{
+  background:var(--green);
+}
 
 .section-title{
   font-size:clamp(3rem,7vw,6rem);
@@ -754,7 +779,9 @@ button{
 
 /* LOVE METER */
 
-.meter{background:var(--lav)}
+.meter{
+  background:var(--lav);
+}
 
 .meter-card{
   max-width:850px;
@@ -801,7 +828,9 @@ button{
 }
 
 @keyframes textPop{
-  50%{transform:scale(1.08)}
+  50%{
+    transform:scale(1.08);
+  }
 }
 
 .choices{
@@ -834,11 +863,13 @@ button{
 
 .final h2{
   font-size:clamp(2.2rem,5vw,4.8rem);
-  line-height:.9;
+  line-height:.92;
   margin:20px 0;
 }
 
-.final h2 span{color:var(--rose-dark)}
+.final h2 span{
+  color:var(--rose-dark);
+}
 
 .final p{
   max-width:720px;
@@ -863,7 +894,7 @@ button{
 }
 
 
-/* MODAL */
+/* POPUP */
 
 .prize-modal{
   position:fixed;
@@ -917,7 +948,7 @@ button{
 }
 
 
-/* REVEAL */
+/* REVEALS */
 
 .reveal{
   opacity:0;
@@ -953,13 +984,21 @@ button{
 }
 
 @keyframes float{
-  0%,100%{transform:translateY(0) rotate(-8deg)}
-  50%{transform:translateY(-9px) rotate(8deg)}
+  0%,100%{
+    transform:translateY(0) rotate(-8deg);
+  }
+  50%{
+    transform:translateY(-9px) rotate(8deg);
+  }
 }
 
 @keyframes pop{
-  50%{transform:scale(1.16)}
-  100%{transform:scale(1)}
+  50%{
+    transform:scale(1.16);
+  }
+  100%{
+    transform:scale(1);
+  }
 }
 
 
@@ -991,9 +1030,13 @@ button{
 
 @media(max-width:560px){
 
-  .wrap{padding:0 16px}
+  .wrap{
+    padding:0 16px;
+  }
 
-  .section{padding:70px 0}
+  .section{
+    padding:70px 0;
+  }
 
   .password-form{
     flex-direction:column;
@@ -1020,9 +1063,9 @@ button{
   }
 
   .wheel-center{
-    width:82px;
-    height:82px;
-    font-size:.68rem;
+    width:78px;
+    height:78px;
+    font-size:.61rem;
   }
 
   .wheel-svg text{
@@ -1055,52 +1098,53 @@ button{
 
     <div class="password-card">
 
-      <div class="password-content">
+      <div class="password-icon">
+        ♡
+      </div>
 
-        <div class="password-icon">♡</div>
+      <div class="kicker">
+        A LITTLE SECRET
+      </div>
 
-        <div class="kicker">
-          A LITTLE SECRET
-        </div>
+      <h1>
+        Made just<br>
+        <span>for you.</span>
+      </h1>
 
-        <h1>
-          Made just<br>
-          <span>for you.</span>
-        </h1>
+      <p class="password-note">
+        This little corner of the internet is only for my favourite person.
+        Enter our secret password to open it. ♡
+      </p>
 
-        <p class="password-note">
-          This little corner of the internet is only for my favourite person.
-          Enter our secret password to open it. ♡
-        </p>
+      <form
+        class="password-form"
+        id="passwordForm"
+      >
 
-        <form class="password-form" id="passwordForm">
+        <input
+          class="password-input"
+          id="passwordInput"
+          type="password"
+          placeholder="Our little secret..."
+          autocomplete="off"
+        >
 
-          <input
-            class="password-input"
-            id="passwordInput"
-            type="password"
-            placeholder="Our little secret..."
-            autocomplete="off"
-          >
+        <button
+          class="password-submit"
+          type="submit"
+        >
+          Unlock ♡
+        </button>
 
-          <button
-            class="password-submit"
-            type="submit"
-          >
-            Unlock ♡
-          </button>
+      </form>
 
-        </form>
+      <div
+        class="password-error"
+        id="passwordError"
+      ></div>
 
-        <div
-          class="password-error"
-          id="passwordError"
-        ></div>
-
-        <div class="password-hint">
-          private little world.exe
-        </div>
-
+      <div class="password-hint">
+        private little world.exe
       </div>
 
     </div>
@@ -1243,7 +1287,7 @@ button{
 </section>
 
 
-<!-- OPENING -->
+<!-- HAPPY BOYFRIEND'S DAY -->
 
 <section
   id="start"
@@ -1274,6 +1318,8 @@ button{
         favourite memories out of the simplest moments.
       </p>
 
+      <!-- THIS BUTTON NOW ACTUALLY MOVES TO THE NEXT SECTION -->
+
       <button
         type="button"
         class="cta light"
@@ -1289,9 +1335,12 @@ button{
 </section>
 
 
-<!-- WHEEL -->
+<!-- GAME -->
 
-<section class="game section">
+<section
+  id="game"
+  class="game section"
+>
 
   <div class="wrap">
 
@@ -1314,9 +1363,7 @@ button{
 
       <div class="wheel-wrap">
 
-        <div class="pointer">
-          ▼
-        </div>
+        <div class="pointer"></div>
 
         <div
           class="wheel"
@@ -1324,125 +1371,188 @@ button{
           aria-label="Prize wheel"
         >
 
+          <!--
+            IMPORTANT:
+
+            Every slice is mathematically EXACTLY 72 degrees.
+
+            The pointer is at the TOP.
+
+            Slice centers:
+            36°
+            108°
+            180°
+            252°
+            324°
+
+            The labels are inside those exact slices.
+          -->
+
           <svg
             class="wheel-svg"
             viewBox="0 0 400 400"
           >
 
-            <!--
-              Each slice is exactly 72 degrees.
-              Slice 1 begins at the top.
-              Its center is 36 degrees.
-            -->
+            <!-- SLICE 1: 0° to 72° -->
 
             <path
               class="slice s1"
-              d="M200 200 L200 18 A182 182 0 0 1 373.4 143.7 Z"
+              d="M200 200
+                 L200 18
+                 A182 182 0 0 1 373.0 143.7
+                 Z"
             ></path>
+
+
+            <!-- SLICE 2: 72° to 144° -->
 
             <path
               class="slice s2"
-              d="M200 200 L373.4 143.7 A182 182 0 0 1 307.3 347.3 Z"
+              d="M200 200
+                 L373.0 143.7
+                 A182 182 0 0 1 307.3 347.3
+                 Z"
             ></path>
+
+
+            <!-- SLICE 3: 144° to 216° -->
 
             <path
               class="slice s3"
-              d="M200 200 L307.3 347.3 A182 182 0 0 1 92.7 347.3 Z"
+              d="M200 200
+                 L307.3 347.3
+                 A182 182 0 0 1 92.7 347.3
+                 Z"
             ></path>
+
+
+            <!-- SLICE 4: 216° to 288° -->
 
             <path
               class="slice s4"
-              d="M200 200 L92.7 347.3 A182 182 0 0 1 26.6 143.7 Z"
+              d="M200 200
+                 L92.7 347.3
+                 A182 182 0 0 1 27.0 143.7
+                 Z"
             ></path>
+
+
+            <!-- SLICE 5: 288° to 360° -->
 
             <path
               class="slice s5"
-              d="M200 200 L26.6 143.7 A182 182 0 0 1 200 18 Z"
+              d="M200 200
+                 L27.0 143.7
+                 A182 182 0 0 1 200 18
+                 Z"
             ></path>
 
 
-            <!-- TEXT -->
+            <!--
+              LABEL 1
+              Center of first slice
+              Radius = about 108px
+              Angle = 36°
+            -->
 
             <text
-              x="200"
-              y="78"
-              font-size="15"
+              class="wheel-text"
+              x="264"
+              y="112"
+              font-size="14"
             >
               YOU PICK
             </text>
 
             <text
-              x="200"
-              y="99"
-              font-size="15"
+              class="wheel-text"
+              x="264"
+              y="132"
+              font-size="14"
             >
               THE MOVIE 🎬
             </text>
 
 
+            <!-- LABEL 2 -->
+
             <text
-              x="306"
-              y="169"
-              font-size="15"
+              class="wheel-text"
+              x="308"
+              y="222"
+              font-size="14"
             >
               HARLEY
             </text>
 
             <text
-              x="306"
-              y="190"
-              font-size="15"
+              class="wheel-text"
+              x="308"
+              y="242"
+              font-size="14"
             >
               DAVIDSON
             </text>
 
 
+            <!-- LABEL 3 -->
+
             <text
-              x="264"
-              y="294"
+              class="wheel-text"
+              x="200"
+              y="310"
               font-size="13"
             >
               NO JOKES
             </text>
 
             <text
-              x="264"
-              y="314"
+              class="wheel-text"
+              x="200"
+              y="329"
               font-size="13"
             >
               ON FUMBLE
             </text>
 
 
+            <!-- LABEL 4 -->
+
             <text
-              x="136"
-              y="303"
+              class="wheel-text"
+              x="92"
+              y="242"
               font-size="17"
             >
               KISSIIII
             </text>
 
 
+            <!-- LABEL 5 -->
+
             <text
-              x="94"
-              y="164"
-              font-size="12"
+              class="wheel-text"
+              x="92"
+              y="154"
+              font-size="11"
             >
               MC CHICKEN
             </text>
 
             <text
-              x="94"
-              y="184"
-              font-size="11"
+              class="wheel-text"
+              x="92"
+              y="172"
+              font-size="10"
             >
               WITH CHICKEN
             </text>
 
             <text
-              x="94"
-              y="203"
-              font-size="11"
+              class="wheel-text"
+              x="92"
+              y="190"
+              font-size="10"
             >
               NUGGETS ON ME
             </text>
@@ -1568,6 +1678,7 @@ button{
         class="photo-card reveal"
         style="--rot:-2deg"
       >
+
         <img
           src="images/first-photo.jpg"
           alt="A photo of us together"
@@ -1576,6 +1687,7 @@ button{
         <figcaption class="photo-label">
           First photo together ♡
         </figcaption>
+
       </figure>
 
 
@@ -1583,6 +1695,7 @@ button{
         class="photo-card reveal"
         style="--rot:2deg"
       >
+
         <img
           src="images/favourite-memory.jpg"
           alt="A favourite memory"
@@ -1591,6 +1704,7 @@ button{
         <figcaption class="photo-label">
           Favourite memory
         </figcaption>
+
       </figure>
 
 
@@ -1598,6 +1712,7 @@ button{
         class="photo-card reveal"
         style="--rot:-1deg"
       >
+
         <img
           src="images/you-being-you.png"
           alt="A sweet candid moment"
@@ -1606,6 +1721,7 @@ button{
         <figcaption class="photo-label">
           You being you
         </figcaption>
+
       </figure>
 
 
@@ -1613,6 +1729,7 @@ button{
         class="photo-card reveal"
         style="--rot:2deg"
       >
+
         <img
           src="images/us.jpg"
           alt="Us together"
@@ -1621,6 +1738,7 @@ button{
         <figcaption class="photo-label">
           Us ♡
         </figcaption>
+
       </figure>
 
     </div>
@@ -1669,27 +1787,34 @@ button{
 
         <div class="stat">
           Cuteness 100
+
           <div class="barline">
             <i style="width:100%"></i>
           </div>
         </div>
+
 
         <div class="stat">
           Hug strength 100
+
           <div class="barline">
             <i style="width:100%"></i>
           </div>
         </div>
+
 
         <div class="stat">
           Making me smile ∞
+
           <div class="barline">
             <i style="width:100%"></i>
           </div>
         </div>
 
+
         <div class="stat">
           Ability to hear 10
+
           <div class="barline">
             <i style="width:10%"></i>
           </div>
@@ -1749,10 +1874,12 @@ button{
 
 
       <div class="meter-track">
+
         <div
           class="meter-fill"
           id="fill"
         ></div>
+
       </div>
 
 
@@ -1877,6 +2004,7 @@ button{
   id="prizeModal"
   role="dialog"
   aria-modal="true"
+  aria-labelledby="prizeTitle"
 >
 
   <div class="prize-box">
@@ -1986,23 +2114,239 @@ passwordForm.addEventListener(
 
       passwordInput.focus();
 
-      passwordInput.animate(
-        [
-          {transform:'translateX(0)'},
-          {transform:'translateX(-7px)'},
-          {transform:'translateX(7px)'},
-          {transform:'translateX(0)'}
-        ],
-        {duration:260}
-      );
-
     }
 
   }
 );
 
 
-/* PRIZE WHEEL */
+/* =========================
+   FIXED NAVIGATION
+========================= */
+
+function goToSection(id){
+
+  const section =
+    document.getElementById(id);
+
+  if(!section) return;
+
+  section.scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+  });
+
+}
+
+
+/*
+  HERO BUTTON
+  Goes to Happy Boyfriend's Day page.
+*/
+
+document
+  .getElementById('openWebsite')
+  .addEventListener(
+    'click',
+    () => goToSection('start')
+  );
+
+
+document
+  .getElementById('showMe')
+  .addEventListener(
+    'click',
+    () => goToSection('start')
+  );
+
+
+/*
+  THIS WAS THE BROKEN BUTTON.
+
+  It was previously scrolling back to
+  the same Happy Boyfriend's Day section.
+
+  It now moves forward to the wheel.
+*/
+
+document
+  .getElementById('openLittleWorld')
+  .addEventListener(
+    'click',
+    () => goToSection('game')
+  );
+
+
+document
+  .getElementById('testMeter')
+  .addEventListener(
+    'click',
+    () => goToSection('meter')
+  );
+
+
+document
+  .getElementById('finalThing')
+  .addEventListener(
+    'click',
+    () => goToSection('final')
+  );
+
+
+document
+  .getElementById('playAgain')
+  .addEventListener(
+    'click',
+    () => {
+
+      window.scrollTo({
+        top:0,
+        behavior:'smooth'
+      });
+
+    }
+  );
+
+
+/* HEART BUTTON */
+
+const loadHeart =
+  document.getElementById('loadHeart');
+
+
+loadHeart.addEventListener(
+  'click',
+  () => {
+
+    loadHeart.textContent = '♥';
+
+    loadHeart.classList.add('loaded');
+
+    document.getElementById(
+      'heartStatus'
+    ).textContent =
+      'Surprise loaded. You are very loved. ♡';
+
+    confetti();
+
+    setTimeout(
+      () => goToSection('start'),
+      650
+    );
+
+  }
+);
+
+
+/* =========================
+   OPENING HEARTS
+========================= */
+
+const openingCard =
+  document.querySelector('.opening-card');
+
+let heartsOozed = false;
+
+
+function oozingHearts(){
+
+  if(
+    heartsOozed ||
+    !openingCard
+  ) return;
+
+  heartsOozed = true;
+
+
+  for(
+    let i=0;
+    i<22;
+    i++
+  ){
+
+    const heart =
+      document.createElement('span');
+
+    heart.className =
+      'ooze-heart';
+
+    heart.textContent =
+      Math.random()>.35
+        ? '♡'
+        : '♥';
+
+    heart.style.setProperty(
+      '--left',
+      `${8+Math.random()*84}%`
+    );
+
+    heart.style.setProperty(
+      '--size',
+      `${14+Math.random()*22}px`
+    );
+
+    heart.style.setProperty(
+      '--duration',
+      `${3.4+Math.random()*2.2}s`
+    );
+
+    heart.style.setProperty(
+      '--delay',
+      `${Math.random()*1.2}s`
+    );
+
+    heart.style.setProperty(
+      '--drift',
+      `${-45+Math.random()*90}px`
+    );
+
+    openingCard.appendChild(heart);
+
+    setTimeout(
+      () => heart.remove(),
+      7000
+    );
+
+  }
+
+}
+
+
+const openingObserver =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(
+        entry => {
+
+          if(entry.isIntersecting){
+
+            oozingHearts();
+
+          }
+
+        }
+      );
+
+    },
+    {
+      threshold:.35
+    }
+  );
+
+
+if(openingCard){
+
+  openingObserver.observe(
+    openingCard
+  );
+
+}
+
+
+/* =========================
+   FIXED WHEEL
+========================= */
 
 const prizes = [
 
@@ -2037,11 +2381,11 @@ const prizes = [
 const wheel =
   document.getElementById('wheel');
 
-const prize =
-  document.getElementById('prize');
-
 const spinButton =
   document.getElementById('spin');
+
+const prize =
+  document.getElementById('prize');
 
 const prizeModal =
   document.getElementById('prizeModal');
@@ -2052,46 +2396,51 @@ const prizeTitle =
 const prizeCopy =
   document.getElementById('prizeCopy');
 
+
 let spinning = false;
 
 let currentRotation = 0;
 
 
 /*
-  FIXED WHEEL MATH
+  THE IMPORTANT PART
 
-  There are 5 slices.
+  There are exactly 5 sections.
 
   360 / 5 = 72 degrees.
 
-  The first slice starts at the top,
-  so its CENTER is 36 degrees.
+  The first section starts at 0 degrees
+  and ends at 72 degrees.
+
+  Therefore its center is 36 degrees.
 
   The centers are:
 
-  Slice 1 = 36°
-  Slice 2 = 108°
-  Slice 3 = 180°
-  Slice 4 = 252°
-  Slice 5 = 324°
+  index 0 = 36°
+  index 1 = 108°
+  index 2 = 180°
+  index 3 = 252°
+  index 4 = 324°
 
-  The exact same selected index controls:
+  The pointer is at 0°.
 
-  1. The visual slice
-  2. The result underneath
-  3. The popup
+  To put a selected center at the pointer,
+  we rotate by:
 
-  This prevents the previous mismatch.
+  360 - selectedCenter
+
+  The same selectedIndex is then used
+  for the text, result and popup.
 */
 
 const SLICE_ANGLE =
   360 / prizes.length;
 
-const SLICE_CENTER_OFFSET =
+const FIRST_CENTER =
   SLICE_ANGLE / 2;
 
 
-function normalizedRotation(){
+function getNormalizedRotation(){
 
   return (
     (currentRotation % 360) + 360
@@ -2100,7 +2449,18 @@ function normalizedRotation(){
 }
 
 
-function openPrize(index){
+function showPrize(index){
+
+  prize.textContent =
+    '🎁 ' +
+    prizes[index].wheel;
+
+  prize.classList.remove('pop');
+
+  void prize.offsetWidth;
+
+  prize.classList.add('pop');
+
 
   prizeTitle.textContent =
     prizes[index].wheel;
@@ -2135,43 +2495,49 @@ spinButton.addEventListener(
 
 
     /*
-      Choose ONE prize index.
+      Choose ONE prize.
     */
 
     const selectedIndex =
       Math.floor(
-        Math.random() * prizes.length
+        Math.random() *
+        prizes.length
       );
 
 
     /*
-      Find the exact center of that
-      visual slice.
+      Find the exact visual center.
     */
 
     const selectedCenter =
-      SLICE_CENTER_OFFSET +
+      FIRST_CENTER +
       selectedIndex * SLICE_ANGLE;
 
 
     /*
-      Work out where the wheel needs
-      to rotate so that this center
-      lands directly under the pointer.
+      Current position of wheel.
     */
 
     const currentMod =
-      normalizedRotation();
+      getNormalizedRotation();
 
-    const targetRotation =
+
+    /*
+      Position needed to put the selected
+      slice directly under the pointer.
+    */
+
+    const targetMod =
       (
         360 -
         selectedCenter
       ) % 360;
 
+
     let correction =
-      targetRotation -
+      targetMod -
       currentMod;
+
 
     if(correction < 0){
 
@@ -2181,38 +2547,40 @@ spinButton.addEventListener(
 
 
     /*
-      Four complete turns plus the
-      exact correction.
+      5 full turns gives a nice visible spin.
+
+      The correction is then added so the
+      EXACT selected slice stops under
+      the pointer.
     */
 
-    currentRotation +=
-      1440 +
+    const finalRotation =
+      currentRotation +
+      1800 +
       correction;
 
+
+    currentRotation =
+      finalRotation;
+
+
     wheel.style.transform =
-      `rotate(${currentRotation}deg)`;
+      `rotate(${finalRotation}deg)`;
 
 
     /*
-      CSS wheel transition is 2.7 seconds.
+      The CSS transition is exactly 3 seconds.
     */
 
     setTimeout(
       () => {
 
-        prize.textContent =
-          '🎁 ' +
-          prizes[selectedIndex].wheel;
+        showPrize(
+          selectedIndex
+        );
 
-        prize.classList.remove('pop');
-
-        void prize.offsetWidth;
-
-        prize.classList.add('pop');
-
-        openPrize(selectedIndex);
-
-        spinButton.disabled = false;
+        spinButton.disabled =
+          false;
 
         spinButton.textContent =
           'SPIN AGAIN ♡';
@@ -2220,7 +2588,7 @@ spinButton.addEventListener(
         spinning = false;
 
       },
-      2750
+      3050
     );
 
   }
@@ -2245,7 +2613,9 @@ prizeModal.addEventListener(
   'click',
   e => {
 
-    if(e.target === prizeModal){
+    if(
+      e.target === prizeModal
+    ){
 
       prizeModal.classList.remove('show');
 
@@ -2269,7 +2639,9 @@ document.addEventListener(
 );
 
 
-/* LOVE METER */
+/* =========================
+   LOVE METER
+========================= */
 
 const loveMessages = {
 
@@ -2314,7 +2686,10 @@ document
           document.getElementById(
             'fill'
           ).style.width =
-            Math.min(value,100) + '%';
+            Math.min(
+              value,
+              100
+            ) + '%';
 
 
           const text =
@@ -2338,265 +2713,11 @@ document
   );
 
 
-/* HEART BUTTON */
-
-const loadHeart =
-  document.getElementById('loadHeart');
-
-
-loadHeart.addEventListener(
-  'click',
-  () => {
-
-    loadHeart.textContent =
-      '♥';
-
-    loadHeart.classList.add(
-      'loaded'
-    );
-
-    document.getElementById(
-      'heartStatus'
-    ).textContent =
-      'Surprise loaded. You are very loved. ♡';
-
-    confetti();
-
-    setTimeout(
-      () => {
-
-        document
-          .getElementById('start')
-          .scrollIntoView({
-            behavior:'smooth'
-          });
-
-      },
-      650
-    );
-
-  }
-);
-
-
-/* OPENING HEARTS */
-
-const openLittleWorld =
-  document.getElementById(
-    'openLittleWorld'
-  );
-
-const openingCard =
-  document.querySelector(
-    '.opening-card'
-  );
-
-let heartsOozed = false;
-
-
-function oozingHearts(){
-
-  if(
-    heartsOozed ||
-    !openingCard
-  ) return;
-
-  heartsOozed = true;
-
-
-  for(
-    let i = 0;
-    i < 22;
-    i++
-  ){
-
-    const heart =
-      document.createElement(
-        'span'
-      );
-
-    heart.className =
-      'ooze-heart';
-
-    heart.textContent =
-      Math.random() > .35
-        ? '♡'
-        : '♥';
-
-    heart.style.setProperty(
-      '--left',
-      `${8 + Math.random() * 84}%`
-    );
-
-    heart.style.setProperty(
-      '--size',
-      `${14 + Math.random() * 22}px`
-    );
-
-    heart.style.setProperty(
-      '--duration',
-      `${3.4 + Math.random() * 2.2}s`
-    );
-
-    heart.style.setProperty(
-      '--delay',
-      `${Math.random() * 1.2}s`
-    );
-
-    heart.style.setProperty(
-      '--drift',
-      `${-45 + Math.random() * 90}px`
-    );
-
-    openingCard.appendChild(
-      heart
-    );
-
-    setTimeout(
-      () => heart.remove(),
-      7000
-    );
-
-  }
-
-}
-
-
-if(openLittleWorld){
-
-  openLittleWorld.addEventListener(
-    'click',
-    () => {
-
-      oozingHearts();
-
-      openingCard.scrollIntoView({
-        behavior:'smooth',
-        block:'center'
-      });
-
-    }
-  );
-
-}
-
-
-const openingObserver =
-  new IntersectionObserver(
-    entries => {
-
-      entries.forEach(
-        entry => {
-
-          if(entry.isIntersecting){
-
-            oozingHearts();
-
-          }
-
-        }
-      );
-
-    },
-    {
-      threshold:.35
-    }
-  );
-
-
-if(openingCard){
-
-  openingObserver.observe(
-    openingCard
-  );
-
-}
-
-
-/* NAVIGATION */
-
-document
-  .getElementById('openWebsite')
-  .addEventListener(
-    'click',
-    () => {
-
-      document
-        .getElementById('start')
-        .scrollIntoView({
-          behavior:'smooth'
-        });
-
-    }
-  );
-
-
-document
-  .getElementById('showMe')
-  .addEventListener(
-    'click',
-    () => {
-
-      document
-        .getElementById('start')
-        .scrollIntoView({
-          behavior:'smooth'
-        });
-
-    }
-  );
-
-
-document
-  .getElementById('testMeter')
-  .addEventListener(
-    'click',
-    () => {
-
-      document
-        .getElementById('meter')
-        .scrollIntoView({
-          behavior:'smooth'
-        });
-
-    }
-  );
-
-
-document
-  .getElementById('finalThing')
-  .addEventListener(
-    'click',
-    () => {
-
-      document
-        .getElementById('final')
-        .scrollIntoView({
-          behavior:'smooth'
-        });
-
-    }
-  );
-
-
-document
-  .getElementById('playAgain')
-  .addEventListener(
-    'click',
-    () => {
-
-      window.scrollTo({
-        top:0,
-        behavior:'smooth'
-      });
-
-    }
-  );
-
-
-/* SCROLL REVEALS */
-
-const observer =
+/* =========================
+   SCROLL REVEALS
+========================= */
+
+const revealObserver =
   new IntersectionObserver(
     entries => {
 
@@ -2627,11 +2748,13 @@ document
   .querySelectorAll('.reveal')
   .forEach(
     element =>
-      observer.observe(element)
+      revealObserver.observe(element)
   );
 
 
-/* CONFETTI */
+/* =========================
+   CONFETTI
+========================= */
 
 function confetti(){
 
@@ -2645,15 +2768,13 @@ function confetti(){
 
 
   for(
-    let i = 0;
-    i < 35;
+    let i=0;
+    i<35;
     i++
   ){
 
     const span =
-      document.createElement(
-        'span'
-      );
+      document.createElement('span');
 
     span.className =
       'confetti';
@@ -2667,16 +2788,19 @@ function confetti(){
       ];
 
     span.style.left =
-      Math.random() * 100 +
+      Math.random() *
+      100 +
       'vw';
 
     span.style.animationDelay =
-      Math.random() * .8 +
+      Math.random() *
+      .8 +
       's';
 
     span.style.fontSize =
       12 +
-      Math.random() * 22 +
+      Math.random() *
+      22 +
       'px';
 
     document.body.appendChild(
