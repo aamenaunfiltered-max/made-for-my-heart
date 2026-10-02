@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
   --pink:#f9d9e7;
   --pink2:#f6bfd6;
@@ -462,36 +463,8 @@ button{
   opacity:0;
   pointer-events:none;
   z-index:5;
-  animation:oozeUp var(--duration) ease-out forwards;
+  animation:oozingHeart var(--duration) ease-out forwards;
   animation-delay:var(--delay);
-}
-
-@keyframes oozing{
-  0%{
-    transform:translateY(0) scale(.5);
-    opacity:0;
-  }
-  20%{
-    opacity:.75;
-  }
-  100%{
-    transform:translate(var(--drift),-420px) scale(1.15);
-    opacity:0;
-  }
-}
-
-@keyframes oozingMobile{
-  0%{
-    transform:translateY(0) scale(.5);
-    opacity:0;
-  }
-  20%{
-    opacity:.75;
-  }
-  100%{
-    transform:translate(var(--drift),-300px) scale(1.05);
-    opacity:0;
-  }
 }
 
 @keyframes oozingHeart{
@@ -499,17 +472,123 @@ button{
     transform:translateY(0) scale(.5);
     opacity:0;
   }
+
   20%{
     opacity:.75;
   }
+
   100%{
     transform:translate(var(--drift),-420px) scale(1.15);
     opacity:0;
   }
 }
 
-.ooze-heart{
-  animation-name:oozingHeart;
+
+/* =========================
+   OUR SONG
+========================= */
+
+.memory-extras{
+  background:linear-gradient(
+    135deg,
+    var(--pink),
+    var(--lav),
+    var(--blue)
+  );
+}
+
+.memory-extras-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  max-width:1000px;
+  margin:45px auto 0;
+}
+
+.song-card,
+.gif-card{
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:35px;
+  position:relative;
+  overflow:hidden;
+}
+
+.song-card:before{
+  content:'♡';
+  position:absolute;
+  right:22px;
+  top:12px;
+  font-size:5rem;
+  color:var(--pink2);
+  transform:rotate(12deg);
+}
+
+.song-note{
+  display:inline-block;
+  background:var(--pink);
+  border:2px solid var(--ink);
+  border-radius:999px;
+  padding:8px 14px;
+  font:.72rem 'Space Mono',monospace;
+  font-weight:700;
+}
+
+.song-card h3{
+  font-size:clamp(3rem,6vw,5rem);
+  line-height:.9;
+  margin:25px 0 12px;
+  color:var(--rose-dark);
+}
+
+.song-card p{
+  font-size:1.12rem;
+  line-height:1.55;
+  margin:0 0 25px;
+  max-width:650px;
+}
+
+.song-player{
+  width:100%;
+  height:52px;
+  margin-top:8px;
+  accent-color:var(--rose-dark);
+}
+
+.gif-card{
+  background:var(--yellow);
+}
+
+.gif-card h4{
+  font-size:1.8rem;
+  margin:0 0 22px;
+}
+
+.gif-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.gif-placeholder{
+  width:100%;
+  aspect-ratio:1;
+  border:3px solid var(--ink);
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 30% 30%,#fff 0 8%,transparent 9%),
+    linear-gradient(135deg,var(--pink2),var(--lav));
+  display:block;
+  object-fit:cover;
+}
+
+.gif-hint{
+  text-align:center;
+  font:.72rem 'Space Mono',monospace;
+  margin:9px 0 0;
+  opacity:.7;
 }
 
 
@@ -648,8 +727,8 @@ button{
 
 .wheel-label{
   font-family:'Space Mono',monospace;
-  font-weight:700;
-  fill:var(--ink);
+  font-weight:900;
+  fill:#ff1493;
   text-anchor:middle;
   dominant-baseline:middle;
 }
@@ -692,10 +771,12 @@ button{
     transform:scale(.3);
     opacity:0;
   }
+
   65%{
     transform:scale(1.12);
     opacity:1;
   }
+
   100%{
     transform:scale(1);
   }
@@ -1025,6 +1106,7 @@ button{
     transform:translateY(0) rotate(0);
     opacity:1;
   }
+
   100%{
     transform:translateY(110vh) rotate(600deg);
     opacity:0;
@@ -1035,6 +1117,7 @@ button{
   0%,100%{
     transform:translateY(0) rotate(-8deg);
   }
+
   50%{
     transform:translateY(-9px) rotate(8deg);
   }
@@ -1044,6 +1127,7 @@ button{
   50%{
     transform:scale(1.16);
   }
+
   100%{
     transform:scale(1);
   }
@@ -1074,6 +1158,11 @@ button{
     max-width:500px;
     margin:auto;
   }
+
+  .memory-extras-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
 @media(max-width:560px){
@@ -1147,7 +1236,18 @@ button{
   .final p{
     font-size:1.1rem;
   }
+
+  .song-card,
+  .gif-card{
+    padding:25px 20px;
+  }
+
+  .gif-grid{
+    gap:10px;
+  }
+
 }
+
 </style>
 </head>
 
@@ -1273,6 +1373,7 @@ button{
             <div class="term-head">
               error.txt
             </div>
+
             <p>
               ERROR 404: ordinary girlfriend not found
             </p>
@@ -1282,6 +1383,7 @@ button{
             <div class="term-head">
               warning
             </div>
+
             <p>
               Dangerously cute. Proceed anyway?
             </p>
@@ -1291,6 +1393,7 @@ button{
             <div class="term-head">
               update.exe
             </div>
+
             <p>
               Installing 1,000,000 hugs... 99%
             </p>
@@ -1300,6 +1403,7 @@ button{
             <div class="term-head">
               new message
             </div>
+
             <p>
               ♥ you → permanently installed in my heart
             </p>
@@ -1388,6 +1492,135 @@ button{
         id="openLittleWorld"
       >
         OPEN OUR LITTLE WORLD ♡
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- OUR SONG -->
+
+<section
+  id="song"
+  class="memory-extras section"
+>
+
+  <div class="wrap">
+
+    <div class="center reveal">
+
+      <div class="kicker red">
+        A LITTLE DEDICATION ♡
+      </div>
+
+      <h2 class="section-title">
+        A song<br>
+        <span style="color:var(--rose-dark)">for you ♡</span>
+      </h2>
+
+      <p
+        class="subtitle"
+        style="margin:0 auto;"
+      >
+        Because sometimes a song can say the things
+        my heart keeps trying to tell you.
+      </p>
+
+    </div>
+
+
+    <div class="memory-extras-grid">
+
+      <div class="song-card reveal">
+
+        <div class="song-note">
+          THIS ONE IS FOR YOU ♡
+        </div>
+
+        <h3>
+          INAAM
+        </h3>
+
+        <p>
+          I chose this song for you because loving you has made
+          so many ordinary moments feel like little gifts.
+          I hope whenever you hear it, you remember that somewhere
+          in this world, there is a girl who chose these words and
+          this melody and thought of you. ♡
+        </p>
+
+        <audio
+          class="song-player"
+          controls
+          preload="metadata"
+        >
+
+          <source
+            src="music/inaam.mp3"
+            type="audio/mpeg"
+          >
+
+          Your browser does not support the audio player.
+
+        </audio>
+
+      </div>
+
+
+      <div class="gif-card reveal">
+
+        <h4>
+          tiny us energy ♡
+        </h4>
+
+        <div class="gif-grid">
+
+          <div>
+
+            <div class="gif-placeholder">
+              ♡
+            </div>
+
+            <p class="gif-hint">
+              your cute GIF goes here ♡
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <div class="gif-placeholder">
+              ♥
+            </div>
+
+            <p class="gif-hint">
+              another little GIF ♡
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="center reveal"
+      style="margin-top:35px;"
+    >
+
+      <button
+        type="button"
+        class="cta"
+        id="goToGame"
+      >
+        okay, now spin for your prize ♡
       </button>
 
     </div>
@@ -2040,6 +2273,14 @@ document
 
 document
   .getElementById('openLittleWorld')
+  .addEventListener(
+    'click',
+    () => goToSection('song')
+  );
+
+
+document
+  .getElementById('goToGame')
   .addEventListener(
     'click',
     () => goToSection('game')
