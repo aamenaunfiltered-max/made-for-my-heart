@@ -626,6 +626,26 @@ button{
   stroke-width:3;
 }
 
+.wheel-slice.s1{
+  fill:#f6bfd6 !important;
+}
+
+.wheel-slice.s2{
+  fill:#d9ebf7 !important;
+}
+
+.wheel-slice.s3{
+  fill:#e9def7 !important;
+}
+
+.wheel-slice.s4{
+  fill:#dff1e5 !important;
+}
+
+.wheel-slice.s5{
+  fill:#fff0cf !important;
+}
+
 .wheel-label{
   font-family:'Space Mono',monospace;
   font-weight:700;
@@ -2018,12 +2038,6 @@ document
   );
 
 
-/*
-  THIS BUTTON NOW MOVES FORWARD
-  FROM HAPPY BOYFRIEND'S DAY
-  TO THE LITTLE WORLD / WHEEL.
-*/
-
 document
   .getElementById('openLittleWorld')
   .addEventListener(
@@ -2197,37 +2211,6 @@ if(openingCard){
    PERFECT WHEEL
 ========================= */
 
-/*
-  THIS WHEEL IS DIFFERENT.
-
-  The old version had manually positioned
-  HTML labels. That caused the labels to
-  sit in the wrong slice.
-
-  This version generates BOTH:
-  1. the slice
-  2. the label
-
-  from the exact same angle.
-
-  There are 5 slices.
-
-  360 / 5 = 72 degrees.
-
-  Every slice is therefore mathematically
-  tied to its label and its prize.
-
-  The pointer is at the TOP.
-
-  The five slice centres are:
-
-  0 degrees
-  72 degrees
-  144 degrees
-  216 degrees
-  288 degrees
-*/
-
 const prizes = [
 
   {
@@ -2310,16 +2293,6 @@ let currentRotation = 0;
 let spinning = false;
 
 
-/*
-  Converts an angle where:
-  0 degrees = straight up
-  90 degrees = right
-  180 degrees = down
-  270 degrees = left
-
-  into SVG coordinates.
-*/
-
 function pointOnCircle(
   cx,
   cy,
@@ -2346,10 +2319,6 @@ function pointOnCircle(
 
 }
 
-
-/*
-  Creates one exact wheel slice.
-*/
 
 function createSlicePath(
   centerAngle,
@@ -2386,11 +2355,6 @@ function createSlicePath(
 }
 
 
-/*
-  Creates the ENTIRE wheel from the same
-  geometry used by the spin calculation.
-*/
-
 function buildWheel(){
 
   wheelSvg.innerHTML = '';
@@ -2408,17 +2372,9 @@ function buildWheel(){
   prizes.forEach(
     (item,index) => {
 
-      /*
-        Exact centre of this prize.
-      */
-
       const centerAngle =
         index * 72;
 
-
-      /*
-        SLICE
-      */
 
       const path =
         document.createElementNS(
@@ -2441,13 +2397,6 @@ function buildWheel(){
 
       wheelSvg.appendChild(path);
 
-
-      /*
-        LABEL
-
-        Radius 112 places the label
-        comfortably inside the slice.
-      */
 
       const labelPoint =
         pointOnCircle(
@@ -2480,11 +2429,6 @@ function buildWheel(){
       );
 
 
-      /*
-        Smaller text for the longer
-        MC CHICKEN prize.
-      */
-
       let fontSize = 15;
 
       if(index === 4){
@@ -2501,11 +2445,6 @@ function buildWheel(){
         fontSize
       );
 
-
-      /*
-        Every line is created inside the
-        exact same label position.
-      */
 
       item.lines.forEach(
         (line,lineIndex) => {
@@ -2547,18 +2486,8 @@ function buildWheel(){
 }
 
 
-/*
-  Build it once.
-
-  No manually positioned wheel labels exist.
-*/
-
 buildWheel();
 
-
-/*
-  Keep the rotation normalized between 0 and 359.
-*/
 
 function normalizedRotation(){
 
@@ -2570,21 +2499,6 @@ function normalizedRotation(){
 
 }
 
-
-/*
-  Spin.
-
-  IMPORTANT:
-
-  The SAME index controls:
-
-  visual slice
-  result text
-  popup title
-  popup message
-
-  So they cannot disagree.
-*/
 
 function spinWheel(){
 
@@ -2603,10 +2517,6 @@ function spinWheel(){
   prize.classList.remove('pop');
 
 
-  /*
-    Pick exactly one prize.
-  */
-
   const selectedIndex =
     Math.floor(
       Math.random() *
@@ -2614,22 +2524,9 @@ function spinWheel(){
     );
 
 
-  /*
-    Since slice 0 is centred at 0 degrees,
-    every next slice is 72 degrees away.
-  */
-
   const selectedCenter =
     selectedIndex * 72;
 
-
-  /*
-    The pointer is at 0 degrees.
-
-    To bring the selected centre to the
-    pointer we rotate the wheel by the
-    negative of its current centre angle.
-  */
 
   const targetRotation =
     (
@@ -2654,10 +2551,6 @@ function spinWheel(){
   }
 
 
-  /*
-    Five full turns plus exact correction.
-  */
-
   const finalRotation =
     currentRotation +
     1800 +
@@ -2672,16 +2565,8 @@ function spinWheel(){
     `rotate(${finalRotation}deg)`;
 
 
-  /*
-    CSS transition = 3 seconds.
-  */
-
   setTimeout(
     () => {
-
-      /*
-        SAME selectedIndex.
-      */
 
       prize.textContent =
         '🎁 ' +
@@ -2728,8 +2613,6 @@ spinButton.addEventListener(
   spinWheel
 );
 
-
-/* CLOSE POPUP */
 
 document
   .getElementById('closePrize')
