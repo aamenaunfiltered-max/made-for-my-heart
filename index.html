@@ -47,7 +47,7 @@ body:before{
   position:fixed;
   inset:0;
   pointer-events:none;
-  opacity:.08;
+  opacity:.06;
   background-image:radial-gradient(#28242b 1px,transparent 1px);
   background-size:12px 12px;
   z-index:50;
@@ -88,8 +88,9 @@ button{
   color:var(--rose-dark);
 }
 
+
 /* =========================
-   PASSWORD SCREEN
+   PASSWORD
 ========================= */
 
 #passwordGate{
@@ -275,6 +276,7 @@ button{
   }
 }
 
+
 /* =========================
    HERO
 ========================= */
@@ -456,6 +458,12 @@ button{
   transform:translateY(-2px);
 }
 
+.cta:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
+
 .cta.light{
   background:var(--cream);
   color:var(--ink);
@@ -477,6 +485,7 @@ button{
   max-width:720px;
   margin:0 auto 30px;
 }
+
 
 /* =========================
    OPENING
@@ -555,6 +564,7 @@ button{
   color:var(--rose);
 }
 
+
 /* =========================
    NOTE
 ========================= */
@@ -612,6 +622,7 @@ button{
   font-size:1.8rem;
 }
 
+
 /* =========================
    WHEEL
 ========================= */
@@ -634,7 +645,7 @@ button{
 .wheel-wrap{
   position:relative;
   width:min(370px,78vw);
-  margin:25px auto 30px;
+  margin:30px auto 32px;
 }
 
 .wheel{
@@ -644,14 +655,20 @@ button{
   border-radius:50%;
   display:block;
   position:relative;
+
+  /*
+    Each prize is 72 degrees.
+    The first slice is centered at the top.
+  */
   background:conic-gradient(
     from -36deg,
-    var(--pink2) 0 20%,
-    var(--blue) 20% 40%,
-    var(--lav) 40% 60%,
-    var(--green) 60% 80%,
-    var(--yellow) 80% 100%
+    var(--pink2) 0deg 72deg,
+    var(--blue) 72deg 144deg,
+    var(--lav) 144deg 216deg,
+    var(--green) 216deg 288deg,
+    var(--yellow) 288deg 360deg
   );
+
   box-shadow:6px 6px 0 var(--ink);
   transition:transform 2.7s cubic-bezier(.15,.8,.2,1);
   overflow:hidden;
@@ -683,33 +700,55 @@ button{
   position:absolute;
   left:50%;
   top:50%;
-  width:90px;
+  width:105px;
   text-align:center;
   font-family:'Space Mono',monospace;
-  font-size:.72rem;
+  font-size:.68rem;
   font-weight:700;
-  line-height:1.05;
-  transform-origin:0 0;
+  line-height:1.08;
+  z-index:2;
+  transform-origin:center center;
+  pointer-events:none;
 }
 
 .wl1{
-  transform:rotate(-2deg) translate(92px,-18px);
+  transform:
+    translate(-50%,-50%)
+    rotate(0deg)
+    translateY(-112px)
+    rotate(0deg);
 }
 
 .wl2{
-  transform:rotate(58deg) translate(90px,-18px);
+  transform:
+    translate(-50%,-50%)
+    rotate(72deg)
+    translateY(-112px)
+    rotate(-72deg);
 }
 
 .wl3{
-  transform:rotate(118deg) translate(90px,-18px);
+  transform:
+    translate(-50%,-50%)
+    rotate(144deg)
+    translateY(-112px)
+    rotate(-144deg);
 }
 
 .wl4{
-  transform:rotate(178deg) translate(90px,-18px);
+  transform:
+    translate(-50%,-50%)
+    rotate(216deg)
+    translateY(-112px)
+    rotate(-216deg);
 }
 
 .wl5{
-  transform:rotate(238deg) translate(90px,-18px);
+  transform:
+    translate(-50%,-50%)
+    rotate(288deg)
+    translateY(-112px)
+    rotate(-288deg);
 }
 
 .pointer{
@@ -717,6 +756,8 @@ button{
   line-height:1;
   transform:translateY(6px);
   color:var(--rose-dark);
+  position:relative;
+  z-index:10;
 }
 
 .result{
@@ -735,14 +776,17 @@ button{
     transform:scale(.3);
     opacity:0;
   }
+
   65%{
     transform:scale(1.12);
     opacity:1;
   }
+
   100%{
     transform:scale(1);
   }
 }
+
 
 /* =========================
    ARCHIVE
@@ -798,6 +842,7 @@ button{
   padding:10px 3px 4px;
   text-align:center;
 }
+
 
 /* =========================
    LEGEND
@@ -870,6 +915,7 @@ button{
   height:100%;
   background:var(--rose);
 }
+
 
 /* =========================
    LOVE METER
@@ -952,6 +998,7 @@ button{
   background:var(--pink);
 }
 
+
 /* =========================
    FINAL
 ========================= */
@@ -996,6 +1043,7 @@ button{
   font-size:1.6rem;
 }
 
+
 /* =========================
    REVEALS + CONFETTI
 ========================= */
@@ -1024,11 +1072,13 @@ button{
     transform:translateY(0) rotate(0);
     opacity:1;
   }
+
   100%{
     transform:translateY(110vh) rotate(600deg);
     opacity:0;
   }
 }
+
 
 /* =========================
    PRIZE MODAL
@@ -1085,6 +1135,7 @@ button{
   font-size:1.2rem;
   line-height:1.4;
 }
+
 
 /* =========================
    MOBILE
@@ -1149,28 +1200,48 @@ button{
   }
 
   .wheel-label{
-    font-size:.57rem;
-    width:75px;
+    width:82px;
+    font-size:.56rem;
   }
 
   .wl1{
-    transform:rotate(-2deg) translate(76px,-15px);
+    transform:
+      translate(-50%,-50%)
+      rotate(0deg)
+      translateY(-88px)
+      rotate(0deg);
   }
 
   .wl2{
-    transform:rotate(58deg) translate(74px,-15px);
+    transform:
+      translate(-50%,-50%)
+      rotate(72deg)
+      translateY(-88px)
+      rotate(-72deg);
   }
 
   .wl3{
-    transform:rotate(118deg) translate(74px,-15px);
+    transform:
+      translate(-50%,-50%)
+      rotate(144deg)
+      translateY(-88px)
+      rotate(-144deg);
   }
 
   .wl4{
-    transform:rotate(178deg) translate(74px,-15px);
+    transform:
+      translate(-50%,-50%)
+      rotate(216deg)
+      translateY(-88px)
+      rotate(-216deg);
   }
 
   .wl5{
-    transform:rotate(238deg) translate(74px,-15px);
+    transform:
+      translate(-50%,-50%)
+      rotate(288deg)
+      translateY(-88px)
+      rotate(-288deg);
   }
 
   .photos{
@@ -1193,6 +1264,7 @@ button{
 </head>
 
 <body>
+
 
 <!-- =========================
      PASSWORD SCREEN
@@ -1544,9 +1616,9 @@ button{
         Thank you for being my favourite person, my safest place,
         and somehow the one person who can make me smile even
         when I don't feel like smiling. I love our silly conversations,
-        the random laughs, the teasing, the tiny (not so tiny) fights,
-        and all the ordinary moments that somehow become my favourite
-        memories just because they're with you.
+        the random laughs, the teasing, the tiny fights, and all the
+        ordinary moments that somehow become my favourite memories
+        just because they're with you.
       </p>
 
       <p>
@@ -1804,7 +1876,7 @@ button{
       id="loveText"
       aria-live="polite"
     >
-      Choose a level. I'm ready.
+      Choose a level. I'm ready. ♡
     </div>
 
 
@@ -1962,11 +2034,6 @@ button{
    PASSWORD
 ========================= */
 
-/*
-  CHANGE YOUR PASSWORD HERE.
-  Current password: onlyus
-*/
-
 const SECRET_PASSWORD = 'onlyus';
 
 const passwordGate =
@@ -1998,7 +2065,7 @@ function unlockSite(){
 }
 
 
-/* If already unlocked during this browser session */
+/* Already unlocked */
 
 if(
   sessionStorage.getItem('boyfriendDayUnlocked')
@@ -2093,6 +2160,7 @@ const prizes = [
 
 
 let spinning = false;
+let currentRotation = 0;
 
 const wheel =
   document.getElementById('wheel');
@@ -2128,6 +2196,21 @@ function openPrize(index){
 }
 
 
+/*
+  The wheel has 5 slices.
+  Each slice is 72 degrees.
+
+  The centre of slice 0 is at 0 degrees,
+  slice 1 at 72,
+  slice 2 at 144,
+  slice 3 at 216,
+  slice 4 at 288.
+
+  The pointer is at the top.
+  Therefore the selected slice must finish
+  with its centre at 0 degrees.
+*/
+
 spinButton.addEventListener(
   'click',
   () => {
@@ -2145,23 +2228,48 @@ spinButton.addEventListener(
 
     void prize.offsetWidth;
 
+
     const index =
       Math.floor(
         Math.random() * prizes.length
       );
 
-    const centerAngle =
-      index * 72;
 
-    const turns =
-      1440 + (360 - centerAngle);
+    const sliceAngle =
+      360 / prizes.length;
+
+
+    const targetAngle =
+      (360 - (index * sliceAngle)) % 360;
+
+
+    const currentMod =
+      ((currentRotation % 360) + 360) % 360;
+
+
+    const delta =
+      (targetAngle - currentMod + 360) % 360;
+
+
+    currentRotation +=
+      1440 + delta;
+
 
     wheel.style.transform =
-      `rotate(${turns}deg)`;
+      `rotate(${currentRotation}deg)`;
 
 
     setTimeout(
       () => {
+
+        /*
+          IMPORTANT:
+          The same "index" controls:
+          1. the visible selected slice
+          2. the result underneath
+          3. the popup title
+          4. the popup message
+        */
 
         prize.textContent =
           '🎁 ' +
@@ -2193,7 +2301,9 @@ document
   .addEventListener(
     'click',
     () => {
+
       prizeModal.classList.remove('show');
+
     }
   );
 
@@ -2259,27 +2369,30 @@ document
           const value =
             Number(btn.dataset.value);
 
-          document.getElementById(
-            'percent'
-          ).textContent =
+
+          const percent =
+            document.getElementById('percent');
+
+          const fill =
+            document.getElementById('fill');
+
+          const text =
+            document.getElementById('loveText');
+
+
+          percent.textContent =
             value > 100
               ? '∞%'
               : value + '%';
 
 
-          document.getElementById(
-            'fill'
-          ).style.width =
+          fill.style.width =
             Math.min(value,100) + '%';
 
 
-          const text =
-            document.getElementById(
-              'loveText'
-            );
-
           text.textContent =
             loveMessages[value];
+
 
           text.classList.remove('pop');
 
@@ -2335,7 +2448,7 @@ loadHeart.addEventListener(
 
 
 /* =========================
-   NAVIGATION BUTTONS
+   NAVIGATION
 ========================= */
 
 document
